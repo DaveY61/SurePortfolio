@@ -7,10 +7,11 @@ This project uses GitHub WebHooks to push updates and deploy the content on http
 ## Development Steps
 
 1. Select a hosting server
-2. Select a WEB Infrastructure
-3. Integrate the WEB Framework with GitHub
-4. Add User Login front end
-5. Select a GUI Visualization library
-6. Develop the Portfolio format with the GUI library
-7. Add "live data" gathering to update the Portfolio data
-8. Add support for an "email summary" sent to Portfolio email address
+2. Select a WEB Framework
+3. Implement a basic "Hello World" page on the host server
+4. Store the site in GitHub w/automatic push to the host server
+5. Add User Login front end
+6. Select a GUI Visualization library
+7. Develop the Portfolio format with the GUI library
+8. Add "live data" gathering to update the Portfolio data
+9. Add support for an "email summary" sent to Portfolio email address
