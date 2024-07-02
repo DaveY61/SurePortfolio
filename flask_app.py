@@ -8,12 +8,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'NEW Latest Message from SurePortfolio!'
+    return 'Final Latest Message from SurePortfolio!'
 
 @app.route('/update_server', methods=['POST'])
 def webhook():
     if request.method == 'POST':
-        repo = git.Repo('/DaveY61/SurePortfolio')
+        repo = git.Repo('mysite')
         origin = repo.remotes.origin
         origin.pull()
         return 'Updated PythonAnywhere successfully', 200
