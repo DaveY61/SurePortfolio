@@ -1,5 +1,5 @@
 ## Project Goals
-This goal of this project is to develop a WEB based Stock Portfolio which displays a summary of the portfolio data along with detail entries for each position in the portfolio.
+This goal of this project is to develop a WEB based **Dividend Stock Portfolio** which displays a roll-up of the portfolio data along with detail entries for each position in the portfolio.
 
 This project uses GitHub WebHooks to push updates and deploy the content on https://www.pythonanywhere.com/
 - Sample Site is Located here: https://sureportfolio.pythonanywhere.com/
