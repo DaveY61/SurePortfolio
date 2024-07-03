@@ -15,11 +15,11 @@ The ***secondary goal*** is to learn the development steps and technology needed
 > [!NOTE]
 > You may use the deployed WEB site (see [Getting Started](#getting-started))<br>
 > You may clone this as a starting point for your own application.<br>
-> You may also wish to review the [Development Steps](#development-steps) to aid with your own similar project.
+> You may also wish to review the [Development Steps](#development-steps) to aid with developing your own application.
 
 > [!WARNING]  
 > This is a ***work in progress*** so if you like where this is heading then be sure to check back later.
-> Since it will be under active development for some time, the code may change frequently and the deployed application may be "broken" as new features are developed.
+> Since it will be under active development, the code may change frequently and the deployed application may be "broken" temporarily as features are developed.
 
 ## Key Features
 
