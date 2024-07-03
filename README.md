@@ -19,7 +19,7 @@ The ***secondary goal*** is to learn the development steps and technology needed
 
 > [!WARNING]  
 > This is a ***work in progress*** so if you like where this is heading then be sure to check back later.
-> Since it will be under active development for some time, the code may change frequently and the deployed may be "broken" as new features are being deveopped.
+> Since it will be under active development for some time, the code may change frequently and the deployed application may be "broken" as new features are developed.
 
 ## Key Features
 
