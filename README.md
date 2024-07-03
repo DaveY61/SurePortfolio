@@ -1,3 +1,8 @@
+## Table of Contents
+
+- [Project Goals](#project-goals)
+- [Development Steps](#development-steps)
+  
 ## Project Goals
 This goal of this project is to develop a WEB based **Dividend Stock Portfolio** which displays a roll-up of the portfolio data along with detail entries for each position in the portfolio.
 
