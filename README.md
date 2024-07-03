@@ -19,8 +19,8 @@ The ***secondary goal*** is to learn the development steps and technology needed
 > You may also wish to review the [Development Steps](#development-steps) to aid with developing your own application.
 
 > [!WARNING]  
-> This is a ***work in progress*** so if you like where this is heading then be sure to check back later.
-> Since it will be under active development, the code may change frequently and the deployed application may be "broken" temporarily as features are developed.
+> This is a ***work in progress*** so if you like where this is heading then be sure to check back later.<br>
+> While under active development, the code may change frequently and the web application may be "broken" temporarily as features are developed.
 
 ## Key Features
 
@@ -42,5 +42,5 @@ Site is Located here: https://sureportfolio.pythonanywhere.com/
 6. Select a GUI Visualization library
 7. Develop the Portfolio format with the GUI library
 8. Add "live data" gathering to update the Portfolio data
-9. Add support for an "email summary" sent to Portfolio email address
+9. Add support for an "email summary" sent to the Portfolio Owner's email address
 
