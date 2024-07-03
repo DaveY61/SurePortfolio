@@ -3,8 +3,9 @@
 - [Project Goals](#project-goals)
 - [Key Features](#key-features)
 - [Technology Used](#technology-used)
-- [Getting Started](#getting-started)
-- [User Guide](#user-guide)
+- Application Guide
+  - [Getting Started](#getting-started)
+  - [User Guide](#user-guide)
 - [Development Steps](#development-steps)
   
 ## Project Goals
