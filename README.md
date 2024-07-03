@@ -12,7 +12,7 @@ This ***primary goal*** of this project is to develop a WEB based **Dividend Sto
 
 The ***secondary goal*** is to learn the development steps and technology needed to deploy a functional Python WEB Application.
 
-> [!NOTE]  Guidelines
+> **NOTE**  Guidelines
 > You may use the deployed WEB site (see [Getting Started](#getting-started))<br>
 > You may clone this as a starting point for your own application.<br>
 > You may also wish to review the [Development Steps](#development-steps) to aid with your own similar project.
