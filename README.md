@@ -17,6 +17,10 @@ The ***secondary goal*** is to learn the development steps and technology needed
 > You may clone this as a starting point for your own application.<br>
 > You may also wish to review the [Development Steps](#development-steps) to aid with your own similar project.
 
+> [!WARNING]  
+> This is a ***work in progress*** so if you like where this is heading then be sure to check back later.
+> Since it will be under active development for some time, the code may change frequently and the deployed may be "broken" as new features are being deveopped.
+
 ## Key Features
 
 ## Technology Used
