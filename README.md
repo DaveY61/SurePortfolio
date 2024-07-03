@@ -1,13 +1,25 @@
 ## Table of Contents
 
 - [Project Goals](#project-goals)
-- [Development Steps](#development-steps)
+- [Key Features](#key-features)
+- [Technology Used](#technology-used)
+- [Getting Started](#getting-started)
+- [User Guide](#user-guide)
+  [Development Steps](#development-steps)
   
 ## Project Goals
 This goal of this project is to develop a WEB based **Dividend Stock Portfolio** which displays a roll-up of the portfolio data along with detail entries for each position in the portfolio.
 
 This project uses GitHub WebHooks to push updates and deploy the content on https://www.pythonanywhere.com/
 - Sample Site is Located here: https://sureportfolio.pythonanywhere.com/
+
+## Key Features
+
+## Technology Used
+
+## Getting Started
+
+## User Guide
 
 ## Development Steps
 
@@ -20,3 +32,4 @@ This project uses GitHub WebHooks to push updates and deploy the content on http
 7. Develop the Portfolio format with the GUI library
 8. Add "live data" gathering to update the Portfolio data
 9. Add support for an "email summary" sent to Portfolio email address
+
