@@ -12,20 +12,19 @@ This ***primary goal*** of this project is to develop a WEB based **Dividend Sto
 
 The ***secondary goal*** is to learn the development steps and technology needed to deploy a functional Python WEB Application.
 
-This project uses GitHub WebHooks to push updates and deploy the content on https://www.pythonanywhere.com/
-- Sample Site is Located here: https://sureportfolio.pythonanywhere.com/
-
 > [!NOTE]  
-> You may use the deployed WEB site (linked above) or clone this as a starting point for your own application.
-> You are welcome to use parts of this application in your own program.
+> You may use the deployed WEB site (linked above) or clone this as a starting point for your own application.<br?
+> You are welcome to use parts of this application in your own program.<br>
 > You may also wish to review the [Development Steps](#development-steps) to aid with your own similar project.
 
 ## Key Features
 
 ## Technology Used
+This project uses GitHub WebHooks to push updates and deploy the content on https://www.pythonanywhere.com/
 
 ## Getting Started
-
+Site is Located here: https://sureportfolio.pythonanywhere.com/
+  
 ## User Guide
 
 ## Development Steps
