@@ -10,6 +10,7 @@
   - [5.2 Select Host Server](#52-select-host-server)
   - [5.3 Select Framework](#53-select-framework)
   - [5.4 Implement a "Hello World" App on the Host Server](#54-implement-a-hello-world-app-on-the-host-server)
+  - [5.5 Integrate with GitHub](#53-integrate-with-github)
   
 ## 1. Project Goals
 This ***primary goal*** of this project is to develop a web-based **Dividend Stock Portfolio** which allows building a portfolio of dividend stocks, performs analysis of the positions, displays a roll-up of the portfolio data, and includes a table with position details.
@@ -116,9 +117,8 @@ You end up with this simple "Hello from Flash!" python application file on the s
       def hello_world():
           return 'Hello from Flask!'
 
+### 5.4 Integrate with GitHub
 
-3. Implement a basic "Hello World" page on the host server
-4. Store the site in GitHub w/automatic push to the host server
 5. Add User Login front end
 6. Select a GUI Visualization library
 7. Develop the Portfolio format with the GUI library
