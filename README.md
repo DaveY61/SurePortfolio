@@ -9,6 +9,7 @@
   - [5.1 Development Resources](#51-development-resources)
   - [5.2 Select Host Server](#52-select-host-server)
   - [5.3 Select Framework](#53-select-framework)
+  - 5.4 Implement a "Hello World" App on the Host Server
   
 ## 1. Project Goals
 This ***primary goal*** of this project is to develop a web-based **Dividend Stock Portfolio** which allows building a portfolio of dividend stocks, performs analysis of the positions, displays a roll-up of the portfolio data, and includes a table with position details.
@@ -84,6 +85,12 @@ If you search for "best python web application framework", several can be found 
 >"In a Flask vs Django fight, Flask would be well out of its weight class. The Flask framework is **ideal for small projects**, whereas Django is ideal for a project with plenty of web apps. The most staggering difference between the two frameworks is the lines of code in each. Flask uses roughly 29,000 lines, whereas Django has just about 290,000 lines of code.<br><br>
 With 10 times less code to sift through, Flask can be a much **more suitable framework for those new to web development**. Also, the benefit of manually adding functionality and applications makes Flask an excellent practice tool for beginners. "<br>
 >*https://www.educative.io/blog/python-frameworks-flask-vs-django#differences*
+
+### 5.4 Implement a "Hello World" App on the Host Server
+I want to create a web application
+
+>Creating A 'Hello World' Web App (Part 1 of 10)<br>
+Up here you will see instructions walking you through the process of creating a Python web application. You can go forward and back through the steps using the arrow buttons below, and you can finish at any time by clicking the cross in the top right. If after closing this helper, you want to go through it again --- or try another one -- go to the Help page, by following the link above and to the right.
 
 
 3. Implement a basic "Hello World" page on the host server
