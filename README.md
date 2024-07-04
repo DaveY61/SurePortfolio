@@ -7,7 +7,8 @@
   - [4.1 Getting Started](#41-getting-started)
   - [4.2 User Guide](#42-user-guide)
 - [5. Development Steps](#5-development-steps) *(to leverage ideas)*
-  - [5.1 Select Host Server](#51-select-host-server)
+  - [5.1 Development Resources](#51-development-resources)
+  - [5.2 Select Host Server](#52-select-host-server)
   
 ## 1. Project Goals
 This ***primary goal*** of this project is to develop a web-based **Dividend Stock Portfolio** which allows building a portfolio of dividend stocks, performs analysis of the positions, displays a roll-up of the portfolio data, and includes a table with position details.
@@ -37,7 +38,27 @@ Site is Located here: https://sureportfolio.pythonanywhere.com/
 
 ## 5. Development Steps
 
-### 5.1 Select Host Server
+### 5.1 Development Resources
+The following links provide helpful instructions and guideance to build you web-based Python application.
+1. Build a Python Web Applications: https://realpython.com/python-web-applications/
+
+### 5.2 Select Host Server
+For the Host Server, my requirements were:
+1) Python support
+2) GitHub integration
+3) Easy to get started
+4) Free tier with No Credit Card needed
+
+       A domain name would have been a plus, but not worth paying for at this early stage of work.
+       It looked like a domain name required a paid service.
+
+If you do a WEB Search for "python web application hosting", the [PythonAnywhere](https://www.pythonanywhere.com) comes up as one of the first choices.  But there are many options to choose from.  Many offer a "Free Tier" but still require a credit card to get started.  I selected PythonAnywhere since it already comes with Python installed and met my selection requirements above.  PythonAnyware does offer an upgrade to a paid version, also, the application is stored in GitHub so can easily be moved to different host later.
+
+It does have limitations, but seemed well suited for my initial project.
+> "**PythonAnywhere offers free Python hosting that is particularly suited to beginners and educators.** For those needing more robust features, PythonAnywhere also has paid hosting plans. The pre-installed Python environment further simplifies setup, allowing developers to focus more on coding and less on configuration.<br>
+However, its storage allowances are low, especially for the prices of the paid plans. Plus, the amount of bandwidth you’re allowed is intentionally unclear. It not only depends on your plan, but you’re also at the mercy of PythonAnywhere’s resources. Overall, PythonAnywhere is best for short, educational projects."<br>
+> *https://www.websiteplanet.com/blog/best-python-hosting-services/*
+
 
 2. Select a WEB Framework
 3. Implement a basic "Hello World" page on the host server
