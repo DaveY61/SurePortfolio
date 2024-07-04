@@ -96,7 +96,8 @@ This next step is easy and done for you by PythonAnywhere.  After completing the
 >**Creating A 'Hello World' Web App (Part 1 of 10)**<br>
 Up here you will see instructions walking you through the process of creating a Python web application. You can go forward and back through the steps using the arrow buttons below, and you can finish at any time by clicking the cross in the top right. If after closing this helper, you want to go through it again --- or try another one -- go to the Help page, by following the link above and to the right.
 >
->*PythonAnywhere walks you through a 10-step process*
+>*PythonAnywhere walks you through a 10-step process*<br>
+>https://blog.pythonanywhere.com/121/
 
 The tutorial creates the "Hello World" site using Flask
 >**Creating A 'Hello World' Web App (Part 4 of 10)**<br>
