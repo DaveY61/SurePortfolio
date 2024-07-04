@@ -1,15 +1,15 @@
 ## Table of Contents
 
-- [1. Project Goals](#Goals)
-- [2. Key Features](#Features)
-- [3. Technology Used](#Technology)
-- [4. Application Guide](#AppGuide) *(to use it)*
-  - [4.1 Getting Started](#GetStarted)
-  - [4.2 User Guide](#UserGuide)
-- [5. Development Steps](#DevSteps) *(to leverage any parts)*
-  - [5.1 Select Host Server](#SelectHost)
+- [1. Project Goals](#-1-project-goals)
+- [2. Key Features](#2-key-features)
+- [3. Technology Used](#3-technology-used)
+- [4. Application Guide](#4-application-guide) *(to use it)*
+  - [4.1 Getting Started](#41-getting-started)
+  - [4.2 User Guide](#42-user-guide)
+- [5. Development Steps](#5-development-steps) *(to leverage any parts)*
+  - [5.1 Select Host Server](#51-select-host-server)
   
-## <a name="Goals"/> 1. Project Goals
+## 1. Project Goals
 This ***primary goal*** of this project is to develop a web-based **Dividend Stock Portfolio** which allows building a portfolio of dividend stocks, performs analysis of the positions, displays a roll-up of the portfolio data, and includes a table with position details.
 
 The ***secondary goal*** is to learn the development steps and technology needed to deploy a functional Python WEB Application.
@@ -23,21 +23,21 @@ The ***secondary goal*** is to learn the development steps and technology needed
 > This is a ***work in progress*** so if you like where this is heading then be sure to check back later.<br>
 > While under active development, the code may change frequently and the web application may be "broken" temporarily as features are developed.
 
-## <a name="Features"/>2. Key Features
+## 2. Key Features
 
-## <a name="Technology"/>3. Technology Used
+## 3. Technology Used
 This project uses GitHub WebHooks to push updates and deploy the content on https://www.pythonanywhere.com/
 
-##  <a name="AppGuide"/>4. Application Guide
+## 4. Application Guide
 
-### <a name="GetStarted"/>4.1 Getting Started
+### 4.1 Getting Started
 Site is Located here: https://sureportfolio.pythonanywhere.com/
   
-### <a name="UserGuide"/>4.2 User Guide
+### 4.2 User Guide
 
-## <a name="DevSteps"/>5. Development Steps
+## 5. Development Steps
 
-### <a name="SelectHost"/>5.1 Select Host Server
+### 5.1 Select Host Server
 
 2. Select a WEB Framework
 3. Implement a basic "Hello World" page on the host server
