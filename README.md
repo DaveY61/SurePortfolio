@@ -9,7 +9,7 @@
   - [5.1 Development Resources](#51-development-resources)
   - [5.2 Select Host Server](#52-select-host-server)
   - [5.3 Select Framework](#53-select-framework)
-  - 5.4 Implement a "Hello World" App on the Host Server
+  - [5.4 Implement a "Hello World" App on the Host Server](#54-implement-a-hello-world-app-on-the-host-server)
   
 ## 1. Project Goals
 This ***primary goal*** of this project is to develop a web-based **Dividend Stock Portfolio** which allows building a portfolio of dividend stocks, performs analysis of the positions, displays a roll-up of the portfolio data, and includes a table with position details.
@@ -87,7 +87,7 @@ With 10 times less code to sift through, Flask can be a much **more suitable fra
 >*https://www.educative.io/blog/python-frameworks-flask-vs-django#differences*
 
 ### 5.4 Implement a "Hello World" App on the Host Server
-I want to create a web application
+This next step is easy and done for you by PythonAnywhere.  After completing the tour, click the **I want to create a web application** option and it will walk you through the steps to create the simple WEB app.
 
 >Creating A 'Hello World' Web App (Part 1 of 10)<br>
 Up here you will see instructions walking you through the process of creating a Python web application. You can go forward and back through the steps using the arrow buttons below, and you can finish at any time by clicking the cross in the top right. If after closing this helper, you want to go through it again --- or try another one -- go to the Help page, by following the link above and to the right.
