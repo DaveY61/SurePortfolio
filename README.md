@@ -41,10 +41,12 @@ Site is Located here: https://sureportfolio.pythonanywhere.com/
 
 ### 5.1 Development Resources
 The following links provide helpful instructions and guideance to build you web-based Python application.
-1. Build a Python Web Applications: https://realpython.com/python-web-applications/
-2. Web Applications & Frameworks: https://docs.python-guide.org/scenarios/web/
-3. Python Frameworks: https://www.monocubed.com/blog/top-python-frameworks/
-4. Flask vs Django: https://www.educative.io/blog/python-frameworks-flask-vs-django
+1. Best hosting platforms for Python: https://www.python-engineer.com/posts/hosting-platforms-for-python/
+2. Build and deploy a Python application: https://blog.back4app.com/how-to-build-and-deploy-a-python-application/
+3. Build a Python Web Applications: https://realpython.com/python-web-applications/
+4. Web Applications & Frameworks: https://docs.python-guide.org/scenarios/web/
+5. Python Frameworks: https://www.monocubed.com/blog/top-python-frameworks/
+6. Flask vs Django: https://www.educative.io/blog/python-frameworks-flask-vs-django
 
 ### 5.2 Select Host Server
 **SELECTED:** [PythonAnywhere](https://www.pythonanywhere.com)
