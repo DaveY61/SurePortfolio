@@ -1,6 +1,6 @@
 ## Table of Contents
 
-- [1. Project Goals](#-1-project-goals)
+- [1. Project Goals](#1-project-goals)
 - [2. Key Features](#2-key-features)
 - [3. Technology Used](#3-technology-used)
 - [4. Application Guide](#4-application-guide) *(to use it)*
