@@ -6,7 +6,7 @@
 - [4. Application Guide](#4-application-guide) *(to use it)*
   - [4.1 Getting Started](#41-getting-started)
   - [4.2 User Guide](#42-user-guide)
-- [5. Development Steps](#5-development-steps) *(to leverage any parts)*
+- [5. Development Steps](#5-development-steps) *(to leverage ideas)*
   - [5.1 Select Host Server](#51-select-host-server)
   
 ## 1. Project Goals
