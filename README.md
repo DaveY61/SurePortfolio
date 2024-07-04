@@ -9,7 +9,7 @@
 - [5. Development Steps](#DevSteps) *(to leverage any parts)*
   - [5.1 Select Host Server](#SelectHost)
   
-## <a name="Goals"/>1. Project Goals
+## <a name="Goals"/> 1. Project Goals
 This ***primary goal*** of this project is to develop a web-based **Dividend Stock Portfolio** which allows building a portfolio of dividend stocks, performs analysis of the positions, displays a roll-up of the portfolio data, and includes a table with position details.
 
 The ***secondary goal*** is to learn the development steps and technology needed to deploy a functional Python WEB Application.
