@@ -82,15 +82,38 @@ If you search for "best python web application framework", several can be found 
 **Django** is a **complete and complex framework** that comes fully equipped with nearly all the applications a website would need, hence the “batteries-included” nickname.
 **Flask** is classified as a **lightweight microframework**. The name is fitting because Flask features only provide the essential functions for setting up your website.
 
->"In a Flask vs Django fight, Flask would be well out of its weight class. The Flask framework is **ideal for small projects**, whereas Django is ideal for a project with plenty of web apps. The most staggering difference between the two frameworks is the lines of code in each. Flask uses roughly 29,000 lines, whereas Django has just about 290,000 lines of code.<br><br>
-With 10 times less code to sift through, Flask can be a much **more suitable framework for those new to web development**. Also, the benefit of manually adding functionality and applications makes Flask an excellent practice tool for beginners. "<br>
+>"In a Flask vs Django fight, Flask would be well out of its weight class. The Flask framework is **ideal for small projects**, whereas Django is ideal for a project with plenty of web apps. The most staggering difference between the two frameworks is the lines of code in each. Flask uses roughly 29,000 lines, whereas Django has just about 290,000 lines of code.
+>
+>
+>With 10 times less code to sift through, Flask can be a much **more suitable framework for those new to web development**. Also, the benefit of manually adding functionality and applications makes Flask an excellent practice tool for beginners. "<br>
 >*https://www.educative.io/blog/python-frameworks-flask-vs-django#differences*
 
 ### 5.4 Implement a "Hello World" App on the Host Server
-This next step is easy and done for you by PythonAnywhere.  After completing the tour, click the **I want to create a web application** option and it will walk you through the steps to create the simple WEB app.
+**IMPLEMENTED:** Automated by PythonAnywhere
 
->Creating A 'Hello World' Web App (Part 1 of 10)<br>
+This next step is easy and done for you by PythonAnywhere.  After completing the introduction tour, click the ***I want to create a web application*** option and it will walk you through the steps to create the simple WEB app.
+
+>**Creating A 'Hello World' Web App (Part 1 of 10)**<br>
 Up here you will see instructions walking you through the process of creating a Python web application. You can go forward and back through the steps using the arrow buttons below, and you can finish at any time by clicking the cross in the top right. If after closing this helper, you want to go through it again --- or try another one -- go to the Help page, by following the link above and to the right.
+>
+>*PythonAnywhere walks you through a 10-step process*
+
+The tutorial creates the "Hello World" site using Flask
+>**Creating A 'Hello World' Web App (Part 4 of 10)**<br>
+>New Web App Wizard
+>
+>The next thing we need to do to create a web app is to choose a Web framework -- that is, the specific Python system that will run your web app. There are a bunch of different ones (a good way to start an argument between Python developers is to ask which is the "best" one), **but for this tutorial we'll use Flask.**
+
+You end up with this simple "Hello from Flash!" python application file on the site.
+      # A very simple Flask Hello World app for you to get started with...
+      
+      from flask import Flask
+      
+      app = Flask(__name__)
+      
+      @app.route('/')
+      def hello_world():
+          return 'Hello from Flask!'
 
 
 3. Implement a basic "Hello World" page on the host server
