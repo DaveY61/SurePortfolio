@@ -90,7 +90,7 @@ If you search for "best python web application framework", several can be found 
 >*https://www.educative.io/blog/python-frameworks-flask-vs-django#differences*
 
 ### 5.4 Implement a "Hello World" App on the Host Server
-**IMPLEMENTED:** Automated by PythonAnywhere
+**METHOD:** Automated by PythonAnywhere
 
 This next step is easy and done for you by PythonAnywhere.  After completing the introduction tour, click the ***I want to create a web application*** option and it will walk you through the steps to create the simple WEB app.
 
@@ -118,10 +118,26 @@ You end up with this simple "Hello from Flash!" python application file on the s
           return 'Hello from Flask!'
 
 ### 5.4 Integrate with GitHub
+**METHOD:** WebHook from GitHub / Python Application on PythonAnywhere 
 
-5. Add User Login front end
-6. Select a GUI Visualization library
-7. Develop the Portfolio format with the GUI library
-8. Add "live data" gathering to update the Portfolio data
-9. Add support for an "email summary" sent to the Portfolio Owner's email address
+Now with a Host, a Framework, and the start of an Application, development is almost ready to begin.  The last step is to setup the PythonAnywhere site for integeration with GitHub. This will allow application work on the local PC, with a push GitHub, and an automatic refresh of the deployed site.
+
+      local → GitHub → PythonAnywhere
+
+**Procedure:**
+1. Store PythonAnywhere site in a repo
+2. Create a GitHub repo
+3. Associate site with GitHub Repo
+4. Add GitHub WebHook
+
+> References<br>
+> https://medium.com/@aadibajpai/deploying-to-pythonanywhere-via-github-6f967956e664<br>
+> https://stackoverflow.com/a/54268132/9044659<br>
+> https://developer.github.com/webhooks/
+
+6. Add User Login front end
+7. Select a GUI Visualization library
+8. Develop the Portfolio format with the GUI library
+9. Add "live data" gathering to update the Portfolio data
+10. Add support for an "email summary" sent to the Portfolio Owner's email address
 
