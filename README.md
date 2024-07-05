@@ -126,7 +126,7 @@ You end up with this simple "Hello from Flash!" python application file on the s
 
 Now with a Host, a Framework, and the start of an Application, development is almost ready to begin.  The last step is to setup the PythonAnywhere site for integeration with GitHub. This will allow application work on the local PC, with a push GitHub, and an automatic refresh of the deployed site.
 
-      local → GitHub → PythonAnywhere
+    local → GitHub → PythonAnywhere
 
 #### 1. Store PythonAnywhere site in a repo<br>
    Open the [PythonAnywhere help](https://blog.pythonanywhere.com/121/) and scroll to the "Keeping our code under control" section
@@ -134,16 +134,20 @@ Now with a Host, a Framework, and the start of an Application, development is al
    Their document walks you through the details to establish a git repo for your 'mysite' application.<br>
    Basically these steps:
    
-       a. open a bash shell in PythonAnywhere
-       b. use 'git config' to define name and email
-       c. use "git init" to make an empty repo
-       d. use "git add" to push the initial files into the repo
+    a. open a bash shell in PythonAnywhere
+    b. use 'git config' to define name and email
+    c. use "git init" to make an empty repo
+    d. use "git add" to push the initial files into the repo
    
 #### 2. Create a GitHub **Public** repo<br>
    [Open GitHub](https://github.com/) and use "Create a new repository" to hold your application.<br>
    For the automatic site update to work on a free PythonAnywhere account it will need to be **a public repo in GitHub**.
   
 #### 3. Associate site with GitHub Repo
+   Basically just return to the bash shell and use this command
+
+    git remote add origin https://github.com/yourusername/yourreponame.git
+   
 #### 4. Automate site update with Webhook
 #### 5. Secure the Webhook
 
