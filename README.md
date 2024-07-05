@@ -12,6 +12,8 @@
   - [5.4 Implement "Hello World" App on the Host Server](#54-implement-hello-world-app-on-the-host-server)
   - [5.5 Integrate with GitHub](#55-integrate-with-github)
   - [5.6 Authenticate User](#56-authenticate-user)
+  - [5.7 Select GUI Library](#57-select-gui-library)
+  - [5.8 Develop Application](#58-develop-application)
   
 ## 1. Project Goals
 This ***primary goal*** of this project is to develop a web-based **Dividend Stock Portfolio** which allows building a portfolio of dividend stocks, performs analysis of the positions, displays a roll-up of the portfolio data, and includes a table with position details.
@@ -152,9 +154,6 @@ Now with a Host, a Framework, and the start of an Application, development is al
 
 ### 5.6 Authenticate User
 
+### 5.7 Select GUI Library
 
-8. Select a GUI Visualization library
-9. Develop the Portfolio format with the GUI library
-10. Add "live data" gathering to update the Portfolio data
-11. Add support for an "email summary" sent to the Portfolio Owner's email address
-
+### 5.8 Develop Application
