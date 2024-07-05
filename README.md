@@ -10,7 +10,8 @@
   - [5.2 Select Host Server](#52-select-host-server)
   - [5.3 Select Framework](#53-select-framework)
   - [5.4 Implement "Hello World" App on the Host Server](#54-implement-hello-world-app-on-the-host-server)
-  - [5.5 Integrate with GitHub](#54-integrate-with-github)
+  - [5.5 Integrate with GitHub](#55-integrate-with-github)
+  - [5.6 Authenticate User](#56-authenticate-user)
   
 ## 1. Project Goals
 This ***primary goal*** of this project is to develop a web-based **Dividend Stock Portfolio** which allows building a portfolio of dividend stocks, performs analysis of the positions, displays a roll-up of the portfolio data, and includes a table with position details.
@@ -117,7 +118,7 @@ You end up with this simple "Hello from Flash!" python application file on the s
       def hello_world():
           return 'Hello from Flask!'
 
-### 5.4 Integrate with GitHub
+### 5.5 Integrate with GitHub
 **METHOD:** WebHook from GitHub / Application endpoint on PythonAnywhere 
 
 Now with a Host, a Framework, and the start of an Application, development is almost ready to begin.  The last step is to setup the PythonAnywhere site for integeration with GitHub. This will allow application work on the local PC, with a push GitHub, and an automatic refresh of the deployed site.
@@ -149,7 +150,7 @@ Now with a Host, a Framework, and the start of an Application, development is al
 > https://stackoverflow.com/a/54268132/9044659<br>
 > https://developer.github.com/webhooks/
 
-### 5.5 Authenticate User
+### 5.6 Authenticate User
 
 
 8. Select a GUI Visualization library
