@@ -51,6 +51,7 @@ The following links provide helpful instructions and guideance to build you web-
 4. Web Applications & Frameworks: https://docs.python-guide.org/scenarios/web/
 5. Python Frameworks: https://www.monocubed.com/blog/top-python-frameworks/
 6. Flask vs Django: https://www.educative.io/blog/python-frameworks-flask-vs-django
+7. A Beginner's Guide to building Flask website on PythonAnywhere: https://blog.pythonanywhere.com/121/
 
 ### 5.2 Select Host Server
 **SELECTED:** [PythonAnywhere](https://www.pythonanywhere.com)
@@ -127,8 +128,7 @@ Now with a Host, a Framework, and the start of an Application, development is al
 
       local → GitHub → PythonAnywhere
 
-**Procedure:**
-#### Store PythonAnywhere site in a repo<br>
+#### 1. Store PythonAnywhere site in a repo<br>
    Open the [PythonAnywhere help](https://blog.pythonanywhere.com/121/) and scroll to the "Keeping our code under control" section
 
    Their document walks you through the details to establish a git repo for your 'mysite' application.<br>
@@ -139,13 +139,13 @@ Now with a Host, a Framework, and the start of an Application, development is al
        c. use "git init" to make an empty repo
        d. use "git add" to push the initial files into the repo
    
-#### Create a GitHub **Public** repo<br>
+#### 2. Create a GitHub **Public** repo<br>
    [Open GitHub](https://github.com/) and use "Create a new repository" to hold your application.<br>
    For the automatic site update to work on a free PythonAnywhere account it will need to be **a public repo in GitHub**.
   
-#### Associate site with GitHub Repo
-#### Automate site update with Webhook
-#### Secure the Webhook
+#### 3. Associate site with GitHub Repo
+#### 4. Automate site update with Webhook
+#### 5. Secure the Webhook
 
 > Git References<br>
 > https://medium.com/@aadibajpai/deploying-to-pythonanywhere-via-github-6f967956e664<br>
