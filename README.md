@@ -6,7 +6,7 @@
   - [4.1 Getting Started](#41-getting-started)
   - [4.2 User Guide](#42-user-guide)
 - [5. Development Steps](#5-development-steps) *(to leverage ideas)*
-  - [5.1 Development Resources](#51-development-resources)
+  - [5.1 Resources](#51-resources)
   - [5.2 Select Host Server](#52-select-host-server)
   - [5.3 Select Framework](#53-select-framework)
   - [5.4 Implement a "Hello World" App on the Host Server](#54-implement-a-hello-world-app-on-the-host-server)
@@ -40,7 +40,7 @@ Site is Located here: https://sureportfolio.pythonanywhere.com/
 
 ## 5. Development Steps
 
-### 5.1 Development Resources
+### 5.1 Resources
 The following links provide helpful instructions and guideance to build you web-based Python application.
 1. Best hosting platforms for Python: https://www.python-engineer.com/posts/hosting-platforms-for-python/
 2. Build and deploy a Python application: https://blog.back4app.com/how-to-build-and-deploy-a-python-application/
@@ -126,9 +126,10 @@ Now with a Host, a Framework, and the start of an Application, development is al
 
 **Procedure:**
 1. Store PythonAnywhere site in a repo
-2. Create a GitHub repo
+2. Create a GitHub **Public** repo
 3. Associate site with GitHub Repo
-4. Add GitHub WebHook
+4. Automate site update with Webhook
+5. Secure the Webhook
 
 > References<br>
 > https://medium.com/@aadibajpai/deploying-to-pythonanywhere-via-github-6f967956e664<br>
