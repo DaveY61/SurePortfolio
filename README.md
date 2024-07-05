@@ -126,10 +126,14 @@ Now with a Host, a Framework, and the start of an Application, development is al
 
 **Procedure:**
 1. Store PythonAnywhere site in a repo
-2. Create a GitHub **Public** repo
-3. Associate site with GitHub Repo
-4. Automate site update with Webhook
-5. Secure the Webhook
+   Open the [PythonAnywhere help](https://blog.pythonanywhere.com/121/) and scroll to the "Keeping our code under control" section
+
+   This walks you through process to estbalish a repo to contain the application.
+   
+3. Create a GitHub **Public** repo
+4. Associate site with GitHub Repo
+5. Automate site update with Webhook
+6. Secure the Webhook
 
 > References<br>
 > https://medium.com/@aadibajpai/deploying-to-pythonanywhere-via-github-6f967956e664<br>
