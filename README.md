@@ -9,7 +9,7 @@
   - [5.1 Resources](#51-resources)
   - [5.2 Select Host Server](#52-select-host-server)
   - [5.3 Select Framework](#53-select-framework)
-  - [5.4 Implement a "Hello World" App on the Host Server](#54-implement-a-hello-world-app-on-the-host-server)
+  - [5.4 Implement "Hello World" App on the Host Server](#54-implement-hello-world-app-on-the-host-server)
   - [5.5 Integrate with GitHub](#54-integrate-with-github)
   
 ## 1. Project Goals
@@ -89,7 +89,7 @@ If you search for "best python web application framework", several can be found 
 >With 10 times less code to sift through, Flask can be a much **more suitable framework for those new to web development**. Also, the benefit of manually adding functionality and applications makes Flask an excellent practice tool for beginners. "<br>
 >*https://www.educative.io/blog/python-frameworks-flask-vs-django#differences*
 
-### 5.4 Implement a "Hello World" App on the Host Server
+### 5.4 Implement "Hello World" App on the Host Server
 **METHOD:** Automated by PythonAnywhere
 
 This next step is easy and done for you by PythonAnywhere.  After completing the introduction tour, click the ***I want to create a web application*** option and it will walk you through the steps to create the simple WEB app.
