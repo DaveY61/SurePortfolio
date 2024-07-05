@@ -125,7 +125,7 @@ Now with a Host, a Framework, and the start of an Application, development is al
       local → GitHub → PythonAnywhere
 
 **Procedure:**
-1. Store PythonAnywhere site in a repo
+1. Store PythonAnywhere site in a repo<br>
    Open the [PythonAnywhere help](https://blog.pythonanywhere.com/121/) and scroll to the "Keeping our code under control" section
 
    Their document walks you through the details to establish a git repo for your 'mysite' application.<br>
@@ -136,21 +136,24 @@ Now with a Host, a Framework, and the start of an Application, development is al
        c. use "git init" to make an empty repo
        d. use "git add" to push the initial files into the repo
    
-3. Create a GitHub **Public** repo
-
+3. Create a GitHub **Public** repo<br>
+   [Open GitHub](https://github.com/) and use "Create a new repository" to hold your application.<br>
+   For the automatic site update to work on a free PythonAnywhere account it will need to be **a public repo in GitHub**.
   
 5. Associate site with GitHub Repo
 6. Automate site update with Webhook
 7. Secure the Webhook
 
-> References<br>
+> Git References<br>
 > https://medium.com/@aadibajpai/deploying-to-pythonanywhere-via-github-6f967956e664<br>
 > https://stackoverflow.com/a/54268132/9044659<br>
 > https://developer.github.com/webhooks/
 
-6. Add User Login front end
-7. Select a GUI Visualization library
-8. Develop the Portfolio format with the GUI library
-9. Add "live data" gathering to update the Portfolio data
-10. Add support for an "email summary" sent to the Portfolio Owner's email address
+### 5.5 Authenticate User
+
+
+8. Select a GUI Visualization library
+9. Develop the Portfolio format with the GUI library
+10. Add "live data" gathering to update the Portfolio data
+11. Add support for an "email summary" sent to the Portfolio Owner's email address
 
