@@ -128,7 +128,12 @@ Now with a Host, a Framework, and the start of an Application, development is al
 1. Store PythonAnywhere site in a repo
    Open the [PythonAnywhere help](https://blog.pythonanywhere.com/121/) and scroll to the "Keeping our code under control" section
 
-   This walks you through process to estbalish a repo to contain the application.
+   This walks you through the details to establish a git repo to contain your 'mysite' application.
+   Basically these steps:
+   a. open a bash shell in PythonAnywhere
+   b. use 'git config' to define name and email
+   c. use "git init" to make an empty repo
+   d. use "git add" to push the initial files into the repo
    
 3. Create a GitHub **Public** repo
 4. Associate site with GitHub Repo
