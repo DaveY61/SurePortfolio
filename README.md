@@ -118,7 +118,7 @@ You end up with this simple "Hello from Flash!" python application file on the s
           return 'Hello from Flask!'
 
 ### 5.4 Integrate with GitHub
-**METHOD:** WebHook from GitHub / Python Application on PythonAnywhere 
+**METHOD:** WebHook from GitHub / Application endpoint on PythonAnywhere 
 
 Now with a Host, a Framework, and the start of an Application, development is almost ready to begin.  The last step is to setup the PythonAnywhere site for integeration with GitHub. This will allow application work on the local PC, with a push GitHub, and an automatic refresh of the deployed site.
 
@@ -137,9 +137,11 @@ Now with a Host, a Framework, and the start of an Application, development is al
        d. use "git add" to push the initial files into the repo
    
 3. Create a GitHub **Public** repo
-4. Associate site with GitHub Repo
-5. Automate site update with Webhook
-6. Secure the Webhook
+
+  
+5. Associate site with GitHub Repo
+6. Automate site update with Webhook
+7. Secure the Webhook
 
 > References<br>
 > https://medium.com/@aadibajpai/deploying-to-pythonanywhere-via-github-6f967956e664<br>
