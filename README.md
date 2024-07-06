@@ -124,7 +124,7 @@ You end up with this simple "Hello from Flash!" python application file on the s
 ### 5.5 Integrate with GitHub
 **METHOD:** WebHook from GitHub / Application endpoint on PythonAnywhere 
 
-Now with a Host, a Framework, and the start of an Application, full development is almost ready to begin.  To streamline deployment, the PythonAnywhere site should be integerated with GitHub. This will allow application work on the local PC, with a push GitHub, and an automatic refresh of the deployed site.
+Now with a Host, a Framework, and the start of an Application, full development is almost ready to begin.  To streamline deployment, the PythonAnywhere site should be integerated with GitHub. This will allow application work on the local PC, with push GitHub, and an automatic refresh of the deployed site.
 
     local → GitHub → PythonAnywhere
 
