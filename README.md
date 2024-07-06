@@ -6,14 +6,16 @@
   - [4.1 Getting Started](#41-getting-started)
   - [4.2 User Guide](#42-user-guide)
 - [5. Development Steps](#5-development-steps) *(to leverage ideas)*
-  - [5.1 Resources](#51-resources)
+  - [5.1 Helpful Resources](#51-helpful-resources)
   - [5.2 Select Host Server](#52-select-host-server)
   - [5.3 Select Framework](#53-select-framework)
   - [5.4 Implement "Hello World" App on the Host Server](#54-implement-hello-world-app-on-the-host-server)
   - [5.5 Integrate with GitHub](#55-integrate-with-github)
-  - [5.6 Authenticate User](#56-authenticate-user)
-  - [5.7 Select GUI Library](#57-select-gui-library)
-  - [5.8 Develop Application](#58-develop-application)
+  - [5.6 Prep for Local Development](#56-prep-for-local-development)
+  - [5.7 Add SMTP Email Support](#57-add-smtp-email-support)
+  - [5.8 Add User Authentication](#58-add-user-authentication)
+  - [5.9 Select GUI Library](#59-select-gui-library)
+  - [5.10 Develop Application](#510-develop-application)
   
 ## 1. Project Goals
 This ***primary goal*** of this project is to develop a web-based **Dividend Stock Portfolio** which allows building a portfolio of dividend stocks, performs analysis of the positions, displays a roll-up of the portfolio data, and includes a table with position details.
@@ -43,7 +45,7 @@ Site is Located here: https://sureportfolio.pythonanywhere.com/
 
 ## 5. Development Steps
 
-### 5.1 Resources
+### 5.1 Helpful Resources
 The following links provide helpful instructions and guideance to build you web-based Python application.
 1. Best hosting platforms for Python: https://www.python-engineer.com/posts/hosting-platforms-for-python/
 2. Build and deploy a Python application: https://blog.back4app.com/how-to-build-and-deploy-a-python-application/
@@ -156,8 +158,12 @@ Now with a Host, a Framework, and the start of an Application, development is al
 > https://stackoverflow.com/a/54268132/9044659<br>
 > https://developer.github.com/webhooks/
 
-### 5.6 Authenticate User
+### 5.6 Prep for Local Development
 
-### 5.7 Select GUI Library
+### 5.7 Add SMTP Email Support
 
-### 5.8 Develop Application
+### 5.8 Add User Authentication
+
+### 5.9 Select GUI Library
+
+### 5.10 Develop Application
