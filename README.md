@@ -23,8 +23,8 @@ The ***secondary goal*** is to learn the development steps and technology needed
 
 > [!NOTE]
 > You may use the deployed WEB site *(see [Getting Started](#41-getting-started))*<br>
-> You may clone this as a starting point for your own application.<br>
-> You may review the [Pre-Development Steps](#5-pre-development-steps) to leverage parts for your own application.
+> Clone this as a starting point for your own application.<br>
+> Review the [Pre-Development Steps](#5-pre-development-steps) to leverage parts for your own work.
 
 > [!WARNING]  
 > This is a ***work in progress*** so if you like where this is heading then be sure to check back later.<br>
