@@ -5,8 +5,8 @@
 - [4. Application Guide](#4-application-guide) *(to use it)*
   - [4.1 Getting Started](#41-getting-started)
   - [4.2 User Guide](#42-user-guide)
-- [5. Development Steps](#5-development-steps) *(to leverage ideas)*
-  - [5.1 Helpful Resources](#51-helpful-resources)
+- [5. Pre-Development Steps](#5-pre-development-steps) *(to leverage ideas)*
+  - [5.1 Resources](#51-resources)
   - [5.2 Select Host Server](#52-select-host-server)
   - [5.3 Select Framework](#53-select-framework)
   - [5.4 Implement "Hello World" App on the Host Server](#54-implement-hello-world-app-on-the-host-server)
@@ -15,7 +15,6 @@
   - [5.7 Add SMTP Email Support](#57-add-smtp-email-support)
   - [5.8 Add User Authentication](#58-add-user-authentication)
   - [5.9 Select GUI Library](#59-select-gui-library)
-  - [5.10 Develop Application](#510-develop-application)
   
 ## 1. Project Goals
 This ***primary goal*** of this project is to develop a web-based **Dividend Stock Portfolio** which allows building a portfolio of dividend stocks, performs analysis of the positions, displays a roll-up of the portfolio data, and includes a table with position details.
@@ -25,7 +24,7 @@ The ***secondary goal*** is to learn the development steps and technology needed
 > [!NOTE]
 > You may use the deployed WEB site *(see [4.1 Getting Started](#41-getting-started))*<br>
 > You may clone this as a starting point for your own application.<br>
-> You may review the [Development Steps](#5-development-steps) to leverage parts for your own application.
+> You may review the [Pre-Development Steps](#5-pre-development-steps) to leverage parts for your own application.
 
 > [!WARNING]  
 > This is a ***work in progress*** so if you like where this is heading then be sure to check back later.<br>
@@ -43,9 +42,10 @@ Site is Located here: https://sureportfolio.pythonanywhere.com/
   
 ### 4.2 User Guide
 
-## 5. Development Steps
+## 5. Pre-Development Steps
+Before starting application development, I wanted to first get a server, framework, and some infrastructure in place.  So these "pre-development steps" were done to prepare for application development.  I documented these steps for me to use again in the future and for anyone else wanting to develop and deploy a Python WEB application.  There are lots (really too many) ways to do this correctly!  I picked one path that works well in the steps below.  
 
-### 5.1 Helpful Resources
+### 5.1 Resources
 The following links provide helpful instructions and guideance to build you web-based Python application.
 1. Best hosting platforms for Python: https://www.python-engineer.com/posts/hosting-platforms-for-python/
 2. Build and deploy a Python application: https://blog.back4app.com/how-to-build-and-deploy-a-python-application/
@@ -113,8 +113,8 @@ The tutorial creates the "Hello World" site using Flask
 >The next thing we need to do to create a web app is to choose a Web framework -- that is, the specific Python system that will run your web app. There are a bunch of different ones (a good way to start an argument between Python developers is to ask which is the "best" one), **but for this tutorial we'll use Flask.**
 
 You end up with this simple "Hello from Flash!" python application file on the site.
+
       # A very simple Flask Hello World app for you to get started with...
-      
       from flask import Flask
       
       app = Flask(__name__)
@@ -166,4 +166,3 @@ Now with a Host, a Framework, and the start of an Application, development is al
 
 ### 5.9 Select GUI Library
 
-### 5.10 Develop Application
