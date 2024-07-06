@@ -11,10 +11,9 @@
   - [5.3 Select Framework](#53-select-framework)
   - [5.4 Implement "Hello World" App on the Host Server](#54-implement-hello-world-app-on-the-host-server)
   - [5.5 Integrate with GitHub](#55-integrate-with-github)
-  - [5.6 Prep for Local Development](#56-prep-for-local-development)
-  - [5.7 Add SMTP Email Support](#57-add-smtp-email-support)
-  - [5.8 Add User Authentication](#58-add-user-authentication)
-  - [5.9 Select GUI Library](#59-select-gui-library)
+  - [5.6 Add SMTP Email Support](#56-add-smtp-email-support)
+  - [5.7 Add User Authentication](#57-add-user-authentication)
+  - [5.8 Select GUI Library](#58-select-gui-library)
   
 ## 1. Project Goals
 This ***primary goal*** of this project is to develop a web-based **Dividend Stock Portfolio** which allows building a portfolio of dividend stocks, performs analysis of the positions, displays a roll-up of the portfolio data, and includes a table with position details.
@@ -148,20 +147,19 @@ Now with a Host, a Framework, and the start of an Application, full development 
    Basically just return to the bash shell and use this command
 
     git remote add origin https://github.com/yourusername/yourreponame.git
-   
-#### 4. Automate site update with Webhook
-#### 5. Secure the Webhook
+
+#### 4. Clone for Local Development
+#### 5. Automate site update with Webhook
+#### 6. Secure the Webhook
 
 > Git References<br>
 > https://medium.com/@aadibajpai/deploying-to-pythonanywhere-via-github-6f967956e664<br>
 > https://stackoverflow.com/a/54268132/9044659<br>
 > https://developer.github.com/webhooks/
 
-### 5.6 Prep for Local Development
+### 5.6 Add SMTP Email Support
 
-### 5.7 Add SMTP Email Support
+### 5.7 Add User Authentication
 
-### 5.8 Add User Authentication
-
-### 5.9 Select GUI Library
+### 5.8 Select GUI Library
 
