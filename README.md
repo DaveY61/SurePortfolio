@@ -33,7 +33,6 @@ The ***secondary goal*** is to learn the development steps and technology needed
 ## 2. Key Features
 
 ## 3. Technology Used
-This project uses GitHub WebHooks to push updates and deploy the content on https://www.pythonanywhere.com/
 
 ## 4. Application Guide
 
