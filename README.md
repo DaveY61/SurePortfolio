@@ -124,7 +124,9 @@ You end up with this simple "Hello from Flash!" python application file on the s
 ### 5.5 Integrate with GitHub
 **METHOD:** WebHook from GitHub / Application endpoint on PythonAnywhere 
 
-Now with a Host, a Framework, and the start of an Application, full development is almost ready to begin.  To streamline deployment, the PythonAnywhere site should be integerated with GitHub. This will allow application work on the local PC, with push GitHub, and an automatic refresh of the deployed site.
+Now with a Host, a Framework, and the start of an Application, full development is almost ready to begin.  To streamline deployment, the PythonAnywhere site should be integerated with GitHub.
+
+    Goal is (1) application work on local PC, (2) push GitHub, and (3) automatic refresh server.
 
     local → GitHub → PythonAnywhere
 
@@ -134,10 +136,10 @@ Now with a Host, a Framework, and the start of an Application, full development 
    Their document walks you through the details to establish a git repo for your 'mysite' application.<br>
    Basically these steps:
    
-    a. open a bash shell in PythonAnywhere
-    b. use 'git config' to define name and email
-    c. use "git init" to make an empty repo
-    d. use "git add" to push the initial files into the repo
+    a. Open a bash shell in PythonAnywhere
+    b. Use 'git config' to define name and email
+    c. Use "git init" to make an empty repo
+    d. Use "git add" to push the initial files into the repo
    
 #### 2. Create a GitHub **Public** repo<br>
    [Open GitHub](https://github.com/) and use "Create a new repository" to hold your application.<br>
