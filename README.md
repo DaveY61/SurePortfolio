@@ -136,7 +136,8 @@ Now with a Host, a Framework, and the start of an Application, full development 
    Their document walks you through the details to establish a git repo for your 'mysite' application.<br>
    Basically these steps:
    
-    a. Open a bash shell in PythonAnywhere
+    a. Open PythonAnywhere: click '$Bash' *(under 'New Console')*
+    b. Change Folder: 'cd mysite'
     b. Use 'git config' to define name and email
     c. Use "git init" to make an empty repo
     d. Use "git add" to push the initial files into the repo
