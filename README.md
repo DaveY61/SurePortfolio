@@ -156,7 +156,7 @@ Now with a Host, a Framework, and the start of an Application, full development 
    [Open GitHub](https://github.com/) and use "Create a new repository" to hold your application.<br>
    For the automatic site update to work on a free PythonAnywhere account it will need to be **a public repo in GitHub**.
   
-#### 3. Associate site with GitHub Repo
+#### 3. Associate PythonAnywhere site with the GitHub Repo
    Return to the bash shell in the 'mysite' folder and use these commands
 
     git remote add origin https://github.com/yourusername/yourreponame.git
@@ -164,7 +164,9 @@ Now with a Host, a Framework, and the start of an Application, full development 
     git push -u origin main
 
 #### 4. Clone for Local Development
+
 #### 5. Automate site update with Webhook
+
 #### 6. Secure the Webhook
 
 > Git References<br>
