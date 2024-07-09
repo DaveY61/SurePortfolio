@@ -149,15 +149,19 @@ Now with a Host, a Framework, and the start of an Application, full development 
             ctrl-D
     d. Use "git add" - to push the initial files into the repo
            git add .gitignore flask_app.py
+    e. Commit the files
+           git commit -m"First Version"
    
 #### 2. Create a GitHub **Public** repo<br>
    [Open GitHub](https://github.com/) and use "Create a new repository" to hold your application.<br>
    For the automatic site update to work on a free PythonAnywhere account it will need to be **a public repo in GitHub**.
   
 #### 3. Associate site with GitHub Repo
-   Basically just return to the bash shell and use this command
+   Return to the bash shell in the 'mysite' folder and use these commands
 
     git remote add origin https://github.com/yourusername/yourreponame.git
+    git branch -M main
+    git push -u origin main
 
 #### 4. Clone for Local Development
 #### 5. Automate site update with Webhook
