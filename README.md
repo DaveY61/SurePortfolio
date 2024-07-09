@@ -157,13 +157,25 @@ Now with a Host, a Framework, and the start of an Application, full development 
    For the automatic site update to work on a free PythonAnywhere account it will need to be **a public repo in GitHub**.
   
 #### 3. Associate PythonAnywhere site with the GitHub Repo
-   Return to the bash shell in the 'mysite' folder and use these commands
+   Return to the Bash shell in the 'mysite' folder and use these commands
 
     git remote add origin https://github.com/yourusername/yourreponame.git
     git branch -M main
     git push -u origin main
 
 #### 4. Clone for Local Development
+   Open the GitHub desktop application<br>
+   Select "File->Clone Repositiory"<br>
+   Select your new GitHub repo from step #2
+
+   Make a Local change and push to Pythonanywhere
+   
+      Edit the "flash_app.py" file to change the message
+      Push local changes to git and sync with the GitHub server
+
+      Update Pythonanywhere from GitHub
+        - Use "git pull" in the Bash shell to pull the updated file
+        - On the "Web" tab, use the green "Reload" button to apply the updated file
 
 #### 5. Automate site update with Webhook
 
