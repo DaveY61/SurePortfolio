@@ -141,13 +141,14 @@ Now with a Host, a Framework, and the start of an Application, full development 
     c. Use 'git config'
             git config --global user.name "Your Name"
             git config --global user.email "you@example.com"
-    d. Use "git init" - to make an empty repo
-    e. Create '.gitignore'
+    d. Make an empty repo
+            git init
+    e. Create '.gitignore' file
             cat > .gitignore
             *.pyc
             __pycache__
             ctrl-D
-    d. Use "git add" - to push the initial files into the repo
+    d. Push the initial files into the repo
            git add .gitignore flask_app.py
     e. Commit the files
            git commit -m"First Version"
