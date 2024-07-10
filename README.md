@@ -217,8 +217,18 @@ Add the following lines to your 'flask_app.py
         else:
             return 'Wrong event type', 400 
             
-  **Last:** Trigger a refresh on Pythonanywhere.
-  
+  **Last:** Trigger Auto-Reload on Pythonanywhere.
+      
+  The "git pull" (above) is actually a "git fetch → git merge" combination, so this will use the post-merge hook.
+      
+      a. In your git repo over at PythonAnywhere go to .git/hooks/
+      b. Make a new file called post-merge.
+      c, Put the following code the file:
+           #!/bin/sh
+           touch /var/www/username_pythonanywhere_com_wsgi.py
+           (Use the path to your wsgi file which when touched, reloads your webapp.)
+      d. Make this executable, open a bash console there and run
+           chmod +x post-merge
 
 #### 6. Secure the Webhook
 
