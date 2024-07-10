@@ -188,6 +188,37 @@ Add the following lines to your 'flask_app.py
          app.run(debug=True)
 
 #### 5. Automate site update with Webhook
+  To automate the site update from GitHub, two things are needed.  Detailed steps are documented in the references below.
+
+  **First:** Add a GitHub Webhook so an action is taken when the repo is updated.
+
+      a. Open the repo on GitHub
+      b. Open the Settings->Webhook page
+      c. Add the Payload URL: https://your_domain/update_server  
+            for the free site, "your_domain" might be "https://username.pythonanywhere.com/update_server"
+            for a paid site, use you selected domain name
+      d. For Content Type, select
+            'application/json
+      e. Click the "Add webhook" button
+
+  **Second:** Add an endpoint route in the application to update the Pythonanywhere site from GitHub.
+
+  In your "flask_app.py" file, add a Flask endpoint route to handle the Webhook message.  In the example below the repo is located in the "mysite" folder on Pythonanywhere.
+
+    import git
+    
+    @app.route('/update_server', methods=['POST'])
+    def webhook():
+        if request.method == 'POST':
+            repo = git.Repo('mysite')
+            origin = repo.remotes.origin
+            origin.pull()
+            return 'Updated PythonAnywhere successfully', 200
+        else:
+            return 'Wrong event type', 400 
+            
+  **Last:** Trigger a refresh on Pythonanywhere.
+  
 
 #### 6. Secure the Webhook
 
