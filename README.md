@@ -231,6 +231,44 @@ Add the following lines to your 'flask_app.py
            chmod +x post-merge
 
 #### 6. Secure the Webhook
+This last bit is fully lifted from the [first resource](https://medium.com/@aadibajpai/deploying-to-pythonanywhere-via-github-6f967956e664) below showing how to use a "secret" from the GitHub Webhook to make sure only your update is refreshing the server.  This method uses a secret passed by GitHub and checks against the .env file secret that you saved in a file on the server.
+
+Use the GitHub guide for securing the Webhook https://developer.github.com/webhooks/securing/.
+Add it to PythonAnywhere as an environment variable (matching the Secret field in the GitHub) This might be helpful https://help.pythonanywhere.com/pages/environment-variables-for-web-apps
+
+The following was added to the "flask_app,py" to read the .env file and validate the Webhook signature
+
+***Read the secret:***
+
+    from check_signature import is_valid_signature
+    
+    import os
+    from dotenv import load_dotenv
+    
+    load_dotenv()
+    w_secret = os.getenv('GitHub_SECRET')
+
+***Update to route handler to check the signature:***
+
+    @app.route('/update_server', methods=['POST'])
+    def webhook():
+        x_hub_signature = request.headers.get("X-Hub-Signature")
+        if not is_valid_signature(x_hub_signature, request.data, w_secret):
+            return 'Invalid Signature', 400
+        
+***Added file "check_signature.py"***
+
+      import hmac
+      import hashlib
+      
+      def is_valid_signature(x_hub_signature, data, private_key):
+          # x_hub_signature and data are from the webhook payload
+          # private key is your webhook secret
+          hash_algorithm, github_signature = x_hub_signature.split('=', 1)
+          algorithm = hashlib.__dict__.get(hash_algorithm)
+          encoded_key = bytes(private_key, 'latin-1')
+          mac = hmac.new(encoded_key, msg=data, digestmod=algorithm)
+          return hmac.compare_digest(mac.hexdigest(), github_signature)
 
 > Git References<br>
 > https://medium.com/@aadibajpai/deploying-to-pythonanywhere-via-github-6f967956e664<br>
