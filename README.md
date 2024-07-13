@@ -11,10 +11,9 @@
   - [5.3 Select Framework](#53-select-framework)
   - [5.4 Implement "Hello World" App on the Host Server](#54-implement-hello-world-app-on-the-host-server)
   - [5.5 Integrate with GitHub](#55-integrate-with-github)
-  - [5.6 Add an Application Log](#56-add-an-application-log)
-  - [5.7 Add SMTP Email Support](#57-add-smtp-email-support)
-  - [5.8 Add User Authentication](#58-add-user-authentication)
-  - [5.9 Select GUI Library](#59-select-gui-library)
+  - [5.6 Webhook Service](#56-webhook-service)
+  - [5.7 Other Services](#57-other-services)
+
   
 ## 1. Project Goals
 This ***primary goal*** of this project is to develop a web-based **Dividend Stock Portfolio** which allows building a portfolio of dividend stocks, performs analysis of the positions, displays a roll-up of the portfolio data, and includes a table with position details.
@@ -231,17 +230,87 @@ Add the following lines to your 'flask_app.py
            chmod +x post-merge
 
 #### 6. Secure the Webhook
+This last bit is fully lifted from the [first resource](https://medium.com/@aadibajpai/deploying-to-pythonanywhere-via-github-6f967956e664) below showing how to use a "secret" from the GitHub Webhook to make sure only your update is refreshing the server.  This method uses a secret passed by GitHub and checks against the .env file secret that you saved in a file on the server.
+
+Use the GitHub guide for securing the Webhook https://developer.github.com/webhooks/securing/.
+Add it to PythonAnywhere as an environment variable (matching the Secret field in the GitHub) This might be helpful https://help.pythonanywhere.com/pages/environment-variables-for-web-apps
+
+The following was added to the "flask_app,py" to read the .env file and validate the Webhook signature
+
+***Read the secret:***
+
+    from check_signature import is_valid_signature
+    
+    import os
+    from dotenv import load_dotenv
+    
+    load_dotenv()
+    w_secret = os.getenv('GitHub_SECRET')
+
+***Update to route handler to check the signature:***
+
+    @app.route('/update_server', methods=['POST'])
+    def webhook():
+        x_hub_signature = request.headers.get("X-Hub-Signature")
+        if not is_valid_signature(x_hub_signature, request.data, w_secret):
+            return 'Invalid Signature', 400
+        
+***Added file "check_signature.py"***
+
+      import hmac
+      import hashlib
+      
+      def is_valid_signature(x_hub_signature, data, private_key):
+          # x_hub_signature and data are from the webhook payload
+          # private key is your webhook secret
+          hash_algorithm, github_signature = x_hub_signature.split('=', 1)
+          algorithm = hashlib.__dict__.get(hash_algorithm)
+          encoded_key = bytes(private_key, 'latin-1')
+          mac = hmac.new(encoded_key, msg=data, digestmod=algorithm)
+          return hmac.compare_digest(mac.hexdigest(), github_signature)
 
 > Git References<br>
 > https://medium.com/@aadibajpai/deploying-to-pythonanywhere-via-github-6f967956e664<br>
 > https://stackoverflow.com/a/54268132/9044659<br>
 > https://developer.github.com/webhooks/
 
-### 5.6 Add an Application Log
+### 5.6 Webhook Service
+Currently the Webhook handler was added in the "flask_app.py" application file.  While this was a simple start, it is poor model to grow when adding other services and application code.  It is better to move all services (and other packages) to different .py files in other folders.  The "flask_app.py" can just import these other packages.
 
-### 5.7 Add SMTP Email Support
+The flask_app.py was changed to provide:
 
-### 5.8 Add User Authentication
+  1. ***create_app()*** function which loads the .env content and then imports each service package with a blueprint.
 
-### 5.9 Select GUI Library
+          def create_app():
+            # Load environment variables from .env file
+            load_dotenv()
+            
+            # Define the Flask app
+            app = Flask(__name__)
+            
+            # Dynamically discover and register blueprints
+            register_blueprints(app, 'services')  
+        
+            return app
+     
+  2. ***register_blueprints()*** function which finds and imports the files in the services folder
+     
+          def register_blueprints(app, package_name):
+              package = importlib.import_module(package_name)
+              for _, module_name, is_pkg in pkgutil.iter_modules(package.__path__):
+                  if is_pkg:
+                      continue
+                  module = importlib.import_module(f"{package_name}.{module_name}")
+                  if hasattr(module, 'blueprint'):
+                      app.register_blueprint(getattr(module, 'blueprint'))
+
+  The ***servce/webhook_service.py*** file was added to contain the webhook update handler
+
+### 5.7 Other Services
+
+#### 1. Application Log
+
+#### 2. Send SMTP Email
+
+#### 3. User Authentication
 
