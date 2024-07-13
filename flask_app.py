@@ -30,7 +30,7 @@ app = create_app()
 # Add the default page
 @app.route('/')
 def hello_world():
-    return 'NEW Webhook with SurePortfolio!'
+    return 'Webhook with SurePortfolio!'
 
 # if "__main__" then run as Debug Mode on local PC
 if __name__ == '__main__':
