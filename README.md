@@ -11,10 +11,9 @@
   - [5.3 Select Framework](#53-select-framework)
   - [5.4 Implement "Hello World" App on the Host Server](#54-implement-hello-world-app-on-the-host-server)
   - [5.5 Integrate with GitHub](#55-integrate-with-github)
-  - [5.6 Add an Application Log](#56-add-an-application-log)
-  - [5.7 Add SMTP Email Support](#57-add-smtp-email-support)
-  - [5.8 Add User Authentication](#58-add-user-authentication)
-  - [5.9 Select GUI Library](#59-select-gui-library)
+  - [5.6 Add Webhook Service](#56-add-webhook-service)
+  - [5.7 Add Other Services](#57-add-othe-services)
+
   
 ## 1. Project Goals
 This ***primary goal*** of this project is to develop a web-based **Dividend Stock Portfolio** which allows building a portfolio of dividend stocks, performs analysis of the positions, displays a roll-up of the portfolio data, and includes a table with position details.
@@ -275,11 +274,13 @@ The following was added to the "flask_app,py" to read the .env file and validate
 > https://stackoverflow.com/a/54268132/9044659<br>
 > https://developer.github.com/webhooks/
 
-### 5.6 Add an Application Log
+### 5.6 Add Webhook Service
 
-### 5.7 Add SMTP Email Support
+### 5.7 Add Other Services
 
-### 5.8 Add User Authentication
+#### 1. Application Log
 
-### 5.9 Select GUI Library
+#### 2. Send SMTP Email
+
+#### 3. User Authentication
 
