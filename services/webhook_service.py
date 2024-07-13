@@ -4,7 +4,7 @@ import hmac
 import hashlib
 import os
 
-webhook_blueprint = Blueprint('webhook', __name__)
+blueprint = Blueprint('webhook', __name__)
 
 # Load the GitHub webhook secret from the environment
 GITHUB_SECRET = os.getenv('GitHub_SECRET')
@@ -20,7 +20,7 @@ def is_valid_signature(x_hub_signature, data, private_key):
     return hmac.compare_digest(mac.hexdigest(), github_signature)
 
 # Handler for Webhook update request
-@webhook_blueprint.route('/update_server', methods=['POST'])
+@blueprint.route('/update_server', methods=['POST'])
 def webhook():
     x_hub_signature = request.headers.get("X-Hub-Signature")
     if not is_valid_signature(x_hub_signature, request.data, GITHUB_SECRET):
