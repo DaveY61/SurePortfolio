@@ -275,6 +275,36 @@ The following was added to the "flask_app,py" to read the .env file and validate
 > https://developer.github.com/webhooks/
 
 ### 5.6 Webhook Service
+Currently the Webhook handler was added in the "flask_app.py" application file.  While this was a simple start, it is poor model to grow when adding other services and application code.  It is better to move all services (and other packages) to different .py files in other folders.  The "flask_app.py" can just import these other packages.
+
+The flask_app.py was changed to provide:
+
+  1. ***create_app()*** function which loads the .env content and then imports each service package with a blueprint.
+
+          def create_app():
+            # Load environment variables from .env file
+            load_dotenv()
+            
+            # Define the Flask app
+            app = Flask(__name__)
+            
+            # Dynamically discover and register blueprints
+            register_blueprints(app, 'services')  
+        
+            return app
+     
+  2. ***register_blueprints()*** function which finds and imports the files in the services folder
+     
+          def register_blueprints(app, package_name):
+              package = importlib.import_module(package_name)
+              for _, module_name, is_pkg in pkgutil.iter_modules(package.__path__):
+                  if is_pkg:
+                      continue
+                  module = importlib.import_module(f"{package_name}.{module_name}")
+                  if hasattr(module, 'blueprint'):
+                      app.register_blueprint(getattr(module, 'blueprint'))
+
+  The ***servce/webhook_service.py*** file was added to contain the webhook update handler
 
 ### 5.7 Other Services
 
