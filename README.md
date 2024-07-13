@@ -304,7 +304,9 @@ The flask_app.py was changed to provide:
                   if hasattr(module, 'blueprint'):
                       app.register_blueprint(getattr(module, 'blueprint'))
 
-  The ***servce/webhook_service.py*** file was added to contain the webhook update handler
+  The ***servce/webhook_service.py*** file was added to contain the webhook update handler.  The ***check_signature.py*** file was removed and the ***is_valid_signature()*** function was moved in to the new webhook_service.py.  
+
+  The change cleans up the flask_app.py and sets the stage for other services to be conveniently added.
 
 ### 5.7 Other Services
 
