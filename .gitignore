@@ -1,2 +1,8 @@
+# Ignore application data directories
+_logs/
+_email/
+
+# Ignore Python bytecode files
+*.pyo
 *.pyc
 __pycache__
