@@ -2,7 +2,6 @@ from flask import Blueprint, request, jsonify, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime, timedelta
 import uuid
-from config import config  # Use relative import
 
 blueprint = Blueprint('auth_service', __name__)
 
