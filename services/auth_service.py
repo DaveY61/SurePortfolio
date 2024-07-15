@@ -24,7 +24,8 @@ sqlite3.register_adapter(datetime, adapt_datetime)
 sqlite3.register_converter('timestamp', convert_datetime)
 
 def get_db():
-    conn = sqlite3.connect(DATABASE, detect_types=sqlite3.PARSE_DECLTYPES)
+    conn = sqlite3.connect(DATABASE, detect_types=sqlite3.PARSE_DECLTYPES, check_same_thread=False)
+    conn.row_factory = sqlite3.Row
     return conn
 
 def init_db():
@@ -105,7 +106,7 @@ def activate_account(token):
     if not token_data:
         return jsonify({'error': 'Invalid token'}), 400
 
-    expires_at = token_data[1]
+    expires_at = token_data['expires_at']
 
     if isinstance(expires_at, str):
         expires_at = convert_datetime(expires_at)  # Convert to datetime object
@@ -113,7 +114,7 @@ def activate_account(token):
     if expires_at < datetime.now():
         return jsonify({'error': 'Token expired'}), 400
 
-    user_id = token_data[0]
+    user_id = token_data['user_id']
 
     with get_db() as db:
         db.execute('''
@@ -140,11 +141,11 @@ def login():
         ''', (email,))
         user = cur.fetchone()
 
-    if not user or not check_password_hash(user[2], password) or not user[3]:
+    if not user or not check_password_hash(user['password'], password) or not user['is_active']:
         return jsonify({'error': 'Invalid credentials'}), 400
 
-    session['user_id'] = user[0]
-    session['username'] = user[1]
+    session['user_id'] = user['id']
+    session['username'] = user['username']
 
     return jsonify({'message': 'Logged in'}), 200
 
@@ -168,7 +169,7 @@ def forgot_password():
         user = cur.fetchone()
 
     if user:
-        token = generate_token(user[0], 'reset')
+        token = generate_token(user['id'], 'reset')
         reset_link = url_for('auth.reset_password', token=token, _external=True)
         send_email([email], "Reset your password", f"Click here to reset: {reset_link}")
 
@@ -192,10 +193,10 @@ def reset_password(token):
         ''', (token,))
         token_data = cur.fetchone()
 
-    if not token_data or convert_datetime(token_data[1]) < datetime.now():
+    if not token_data or convert_datetime(token_data['expires_at']) < datetime.now():
         return jsonify({'error': 'Invalid or expired token'}), 400
 
-    user_id = token_data[0]
+    user_id = token_data['user_id']
     hashed_password = generate_password_hash(new_password)
 
     with get_db() as db:
@@ -223,10 +224,10 @@ def remove_account():
         ''', (email,))
         user = cur.fetchone()
 
-    if not user or not check_password_hash(user[1], password):
+    if not user or not check_password_hash(user['password'], password):
         return jsonify({'error': 'Invalid credentials'}), 400
 
-    user_id = user[0]
+    user_id = user['id']
 
     with get_db() as db:
         db.execute('''

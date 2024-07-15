@@ -34,6 +34,11 @@ username = "testuser"
 email = "test@example.com"
 password = "password123"
 
+def get_db():
+    conn = sqlite3.connect(config.DATABASE_PATH, check_same_thread=False)  # Add check_same_thread=False to allow concurrent access in tests
+    conn.row_factory = sqlite3.Row
+    return conn
+
 @pytest.fixture(scope='module', autouse=True)
 def setup_client():
     app = create_app()
@@ -76,7 +81,7 @@ def test_activate(setup_client):
     assert response.status_code == 201
 
     # Retrieve the activation token from the database
-    conn = sqlite3.connect(config.DATABASE_PATH)
+    conn = get_db()
     cursor = conn.cursor()
     cursor.execute("SELECT token, expires_at FROM tokens WHERE token_type='activation'")
     token, expires_at = cursor.fetchone()
