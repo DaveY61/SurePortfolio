@@ -10,8 +10,17 @@ blueprint = Blueprint('auth', __name__)
 
 DATABASE = config.DATABASE_PATH
 
+def adapt_datetime(dt):
+    return dt.isoformat()
+
+def convert_datetime(s):
+    return datetime.fromisoformat(s)
+
+sqlite3.register_adapter(datetime, adapt_datetime)
+sqlite3.register_converter('timestamp', convert_datetime)
+
 def get_db():
-    conn = sqlite3.connect(DATABASE)
+    conn = sqlite3.connect(DATABASE, detect_types=sqlite3.PARSE_DECLTYPES)
     return conn
 
 def init_db():
@@ -23,7 +32,7 @@ def init_db():
                 email TEXT NOT NULL,
                 password TEXT NOT NULL,
                 is_active INTEGER NOT NULL DEFAULT 0,
-                created_at TEXT NOT NULL
+                created_at timestamp NOT NULL
             )
         ''')
         db.execute('''
@@ -31,7 +40,7 @@ def init_db():
                 user_id TEXT NOT NULL,
                 token TEXT NOT NULL,
                 token_type TEXT NOT NULL,
-                expires_at TEXT NOT NULL,
+                expires_at timestamp NOT NULL,
                 FOREIGN KEY (user_id) REFERENCES users (id)
             )
         ''')
@@ -59,7 +68,7 @@ def register():
 
     hashed_password = generate_password_hash(password)
     user_id = str(uuid.uuid4())
-    created_at = datetime.now().isoformat()
+    created_at = datetime.now()
 
     with get_db() as db:
         db.execute('''
@@ -82,8 +91,14 @@ def activate_account(token):
         ''', (token,))
         token_data = cur.fetchone()
 
-    if not token_data or datetime.fromisoformat(token_data[1]) < datetime.now():
-        return jsonify({'error': 'Invalid or expired token'}), 400
+    if not token_data:
+        return jsonify({'error': 'Invalid token'}), 400
+
+    expires_at = token_data[1]
+    expires_at = datetime.fromisoformat(expires_at)  # Convert to datetime object
+
+    if expires_at < datetime.now():
+        return jsonify({'error': 'Token expired'}), 400
 
     user_id = token_data[0]
 
@@ -164,7 +179,7 @@ def reset_password(token):
         ''', (token,))
         token_data = cur.fetchone()
 
-    if not token_data or datetime.fromisoformat(token_data[1]) < datetime.now():
+    if not token_data or token_data[1] < datetime.now():
         return jsonify({'error': 'Invalid or expired token'}), 400
 
     user_id = token_data[0]
