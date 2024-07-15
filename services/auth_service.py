@@ -70,11 +70,18 @@ def register():
     if not username or not email or not password:
         return jsonify({'error': 'Invalid input'}), 400
 
-    hashed_password = generate_password_hash(password)
-    user_id = str(uuid.uuid4())
-    created_at = datetime.now()
-
     with get_db() as db:
+        # Check if the email already exists
+        cur = db.execute('SELECT id FROM users WHERE lower(email) = lower(?)', (email,))
+        existing_user = cur.fetchone()
+
+        if existing_user:
+            return jsonify({'error': 'Email address already registered. Please login or reset password.'}), 400
+
+        hashed_password = generate_password_hash(password)
+        user_id = str(uuid.uuid4())
+        created_at = datetime.now()
+
         db.execute('''
             INSERT INTO users (id, username, email, password, created_at)
             VALUES (?, ?, ?, ?, ?)

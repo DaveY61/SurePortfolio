@@ -18,13 +18,18 @@ sys.path.insert(0, project_path)
 #----------------------------------------------------------------------------
 import pytest
 import sqlite3
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from flask_app import create_app
 from services.auth_service import init_db
 from config import config
 
-# Define user credentials
+# Define user credentials to test "Register"
+reg_username = "testuser"
+reg_email = "reg_test@example.com"
+reg_password = "password123"
+
+# Define user credentials to test "Activate" and other endpoints
 username = "testuser"
 email = "test@example.com"
 password = "password123"
@@ -38,17 +43,37 @@ def setup_client():
             init_db()
         yield client
 
-@pytest.fixture(scope='module')
-def register_user(setup_client):
+def test_register(setup_client):
     client = setup_client
+
+    # First registration attempt
+    response = client.post('/register', json={
+        "username": reg_username,
+        "email": reg_email,
+        "password": reg_password
+    })
+    assert response.status_code == 201
+
+    # Second registration attempt with the same email should fail
+    response = client.post('/register', json={
+        "username": reg_username,
+        "email": reg_email,
+        "password": reg_password
+    })
+    assert response.status_code == 400
+    data = response.get_json()
+    assert 'error' in data
+
+def test_activate(setup_client):
+    client = setup_client
+
+    # Register a new user
     response = client.post('/register', json={
         "username": username,
         "email": email,
         "password": password
     })
     assert response.status_code == 201
-    data = response.get_json()
-    assert 'message' in data
 
     # Retrieve the activation token from the database
     conn = sqlite3.connect(config.DATABASE_PATH)
@@ -59,11 +84,7 @@ def register_user(setup_client):
 
     assert datetime.fromisoformat(expires_at) > datetime.now(), "Activation token has expired"
 
-    return token  # Return the activation token
-
-def test_activate(setup_client, register_user):
-    client = setup_client
-    token = register_user
+    # Activate the user
     response = client.get(f'/activate/{token}')
     assert response.status_code == 200, f"Failed to activate with token: {response.data.decode('utf-8')}"
     data = response.get_json()
