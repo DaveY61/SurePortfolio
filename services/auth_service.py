@@ -14,7 +14,11 @@ def adapt_datetime(dt):
     return dt.isoformat()
 
 def convert_datetime(s):
-    return datetime.fromisoformat(s)
+    if isinstance(s, bytes):
+        s = s.decode('utf-8')  # Assuming UTF-8 encoding
+    if s:
+        return datetime.fromisoformat(s)
+    return None
 
 sqlite3.register_adapter(datetime, adapt_datetime)
 sqlite3.register_converter('timestamp', convert_datetime)
@@ -95,7 +99,9 @@ def activate_account(token):
         return jsonify({'error': 'Invalid token'}), 400
 
     expires_at = token_data[1]
-    expires_at = datetime.fromisoformat(expires_at)  # Convert to datetime object
+
+    if isinstance(expires_at, str):
+        expires_at = convert_datetime(expires_at)  # Convert to datetime object
 
     if expires_at < datetime.now():
         return jsonify({'error': 'Token expired'}), 400
@@ -179,7 +185,7 @@ def reset_password(token):
         ''', (token,))
         token_data = cur.fetchone()
 
-    if not token_data or token_data[1] < datetime.now():
+    if not token_data or convert_datetime(token_data[1]) < datetime.now():
         return jsonify({'error': 'Invalid or expired token'}), 400
 
     user_id = token_data[0]
