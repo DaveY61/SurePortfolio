@@ -4,22 +4,56 @@ import os
 # Add the parent directory to the sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from flask import Flask
-from services.auth_service import blueprint as auth_blueprint
+import pytest
+from flask_app import create_app
+from services.auth_service import init_db
+import json
 
-def test_auth_service():
-    app = Flask(__name__)
-    app.register_blueprint(auth_blueprint, url_prefix='/auth')
-
-    # Test the endpoints
+@pytest.fixture
+def client():
+    app = create_app()
+    app.config['TESTING'] = True
     with app.test_client() as client:
-        # Test login
-        response = client.post('/auth/login', json={'username_or_email': 'user', 'password': 'pass'})
-        print('Login:', response.json)
+        with app.app_context():
+            # Initialize your database or other setup tasks
+            init_db()
+        yield client
 
-        # Test register
-        response = client.post('/auth/register', json={'username': 'newuser', 'email': 'newuser@example.com', 'password': 'newpass'})
-        print('Register:', response.json)
+def test_register(client):
+    response = client.post('/register', json={
+        "username": "testuser",
+        "email": "test@example.com",
+        "password": "password123"
+    })
+    assert response.status_code == 201
+    data = response.get_json()
+    assert 'message' in data
+
+def test_login(client):
+    response = client.post('/login', json={
+        "email": "test@example.com",
+        "password": "password123"
+    })
+    assert response.status_code == 200
+    data = response.get_json()
+    assert 'message' in data
+
+def test_forgot_password(client):
+    response = client.post('/forgot_password', json={
+        "email": "test@example.com"
+    })
+    assert response.status_code == 200
+    data = response.get_json()
+    assert 'message' in data
+
+def test_remove_account(client):
+    response = client.post('/remove_account', json={
+        "email": "test@example.com",
+        "password": "password123"
+    })
+    assert response.status_code == 200
+    data = response.get_json()
+    assert 'message' in data
 
 if __name__ == "__main__":
-    test_auth_service()
+    pytest.main()

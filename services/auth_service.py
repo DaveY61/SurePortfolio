@@ -1,96 +1,212 @@
-from flask import Blueprint, request, jsonify, session
+from flask import Blueprint, request, jsonify, session, redirect, url_for
+import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime, timedelta
 import uuid
+import os
+from datetime import datetime, timedelta
+from config import config
+from services.email_service import send_email
 
-blueprint = Blueprint('auth_service', __name__)
+blueprint = Blueprint('auth', __name__)
 
-users = {}
-key_to_user = {}
-key_expiry = {}
+DATABASE = config.DATABASE_PATH
 
-# Helper function to generate a unique key
-def generate_key():
-    return str(uuid.uuid4())
+def get_db():
+    conn = sqlite3.connect(DATABASE)
+    return conn
 
-# Helper function to validate keys
-def valid_key(key):
-    if key in key_to_user and key in key_expiry:
-        if datetime.now() < key_expiry[key]:
-            return True
-    return False
+def init_db():
+    with get_db() as db:
+        db.execute('''
+            CREATE TABLE IF NOT EXISTS users (
+                id TEXT PRIMARY KEY,
+                username TEXT NOT NULL,
+                email TEXT NOT NULL,
+                password TEXT NOT NULL,
+                is_active INTEGER NOT NULL DEFAULT 0,
+                created_at TEXT NOT NULL
+            )
+        ''')
+        db.execute('''
+            CREATE TABLE IF NOT EXISTS tokens (
+                user_id TEXT NOT NULL,
+                token TEXT NOT NULL,
+                token_type TEXT NOT NULL,
+                expires_at TEXT NOT NULL,
+                FOREIGN KEY (user_id) REFERENCES users (id)
+            )
+        ''')
+    print("Database initialized")
 
-@blueprint.route('/login', methods=['POST'])
-def login():
-    data = request.json
-    username_or_email = data.get('username_or_email')
-    password = data.get('password')
-    user = users.get(username_or_email)
-    if user and check_password_hash(user['password'], password):
-        session['user'] = user
-        return jsonify({"message": "Login successful"}), 200
-    return jsonify({"error": "Invalid credentials"}), 400
-
-@blueprint.route('/logout', methods=['POST'])
-def logout():
-    session.pop('user', None)
-    return jsonify({"message": "Logout successful"}), 200
-
-@blueprint.route('/forgot_password', methods=['POST'])
-def forgot_password():
-    email = request.json.get('email')
-    if email in users:
-        key = generate_key()
-        key_to_user[key] = email
-        key_expiry[key] = datetime.now() + timedelta(minutes=20)
-        # send reset link logic here, including key
-        return jsonify({"message": "Check your email for the reset link"}), 200
-    return jsonify({"error": "Email not found"}), 400
-
-@blueprint.route('/reset_password', methods=['POST'])
-def reset_password():
-    key = request.json.get('key')
-    new_password = request.json.get('new_password')
-    if valid_key(key):
-        email = key_to_user.pop(key)
-        key_expiry.pop(key)
-        user = users.get(email)
-        user['password'] = generate_password_hash(new_password)
-        return jsonify({"message": "Password reset successful"}), 200
-    return jsonify({"error": "Invalid or expired key"}), 400
+def generate_token(user_id, token_type):
+    token = str(uuid.uuid4())
+    expires_at = datetime.now() + timedelta(minutes=20)
+    with get_db() as db:
+        db.execute('''
+            INSERT INTO tokens (user_id, token, token_type, expires_at)
+            VALUES (?, ?, ?, ?)
+        ''', (user_id, token, token_type, expires_at))
+    return token
 
 @blueprint.route('/register', methods=['POST'])
 def register():
     data = request.json
     username = data.get('username')
     email = data.get('email')
-    password = generate_password_hash(data.get('password'))
-    if email in users:
-        return jsonify({"error": "Email already registered"}), 400
-    users[email] = {"username": username, "email": email, "password": password}
-    key = generate_key()
-    key_to_user[key] = email
-    key_expiry[key] = datetime.now() + timedelta(minutes=20)
-    # send activation link logic here, including key
-    return jsonify({"message": "Check your email to activate your account"}), 200
+    password = data.get('password')
 
-@blueprint.route('/activate_account', methods=['POST'])
-def activate_account():
-    key = request.json.get('key')
-    if valid_key(key):
-        email = key_to_user.pop(key)
-        key_expiry.pop(key)
-        # add user activation logic here
-        return jsonify({"message": "Account activated successfully"}), 200
-    return jsonify({"error": "Invalid or expired key"}), 400
+    if not username or not email or not password:
+        return jsonify({'error': 'Invalid input'}), 400
+
+    hashed_password = generate_password_hash(password)
+    user_id = str(uuid.uuid4())
+    created_at = datetime.now().isoformat()
+
+    with get_db() as db:
+        db.execute('''
+            INSERT INTO users (id, username, email, password, created_at)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (user_id, username, email, hashed_password, created_at))
+
+    token = generate_token(user_id, 'activation')
+    activation_link = url_for('auth.activate_account', token=token, _external=True)
+    send_email([email], "Activate your account", f"Click here to activate: {activation_link}")
+
+    return jsonify({'message': 'Check your email to activate your account'}), 201
+
+@blueprint.route('/activate/<token>', methods=['GET'])
+def activate_account(token):
+    with get_db() as db:
+        cur = db.execute('''
+            SELECT user_id, expires_at FROM tokens
+            WHERE token = ? AND token_type = 'activation'
+        ''', (token,))
+        token_data = cur.fetchone()
+
+    if not token_data or datetime.fromisoformat(token_data[1]) < datetime.now():
+        return jsonify({'error': 'Invalid or expired token'}), 400
+
+    user_id = token_data[0]
+
+    with get_db() as db:
+        db.execute('''
+            UPDATE users SET is_active = 1 WHERE id = ?
+        ''', (user_id,))
+        db.execute('''
+            DELETE FROM tokens WHERE token = ?
+        ''', (token,))
+
+    return jsonify({'message': 'Account activated'}), 200
+
+@blueprint.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+
+    if not email or not password:
+        return jsonify({'error': 'Invalid input'}), 400
+
+    with get_db() as db:
+        cur = db.execute('''
+            SELECT id, username, password, is_active FROM users WHERE email = ?
+        ''', (email,))
+        user = cur.fetchone()
+
+    if not user or not check_password_hash(user[2], password) or not user[3]:
+        return jsonify({'error': 'Invalid credentials'}), 400
+
+    session['user_id'] = user[0]
+    session['username'] = user[1]
+
+    return jsonify({'message': 'Logged in'}), 200
+
+@blueprint.route('/logout', methods=['POST'])
+def logout():
+    session.clear()
+    return jsonify({'message': 'Logged out'}), 200
+
+@blueprint.route('/forgot_password', methods=['POST'])
+def forgot_password():
+    data = request.json
+    email = data.get('email')
+
+    if not email:
+        return jsonify({'error': 'Invalid input'}), 400
+
+    with get_db() as db:
+        cur = db.execute('''
+            SELECT id FROM users WHERE email = ?
+        ''', (email,))
+        user = cur.fetchone()
+
+    if user:
+        token = generate_token(user[0], 'reset')
+        reset_link = url_for('auth.reset_password', token=token, _external=True)
+        send_email([email], "Reset your password", f"Click here to reset: {reset_link}")
+
+    return jsonify({'message': 'Check your email for a reset link'}), 200
+
+@blueprint.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    if request.method == 'GET':
+        return jsonify({'message': 'Provide a new password'})
+
+    data = request.json
+    new_password = data.get('password')
+
+    if not new_password:
+        return jsonify({'error': 'Invalid input'}), 400
+
+    with get_db() as db:
+        cur = db.execute('''
+            SELECT user_id, expires_at FROM tokens
+            WHERE token = ? AND token_type = 'reset'
+        ''', (token,))
+        token_data = cur.fetchone()
+
+    if not token_data or datetime.fromisoformat(token_data[1]) < datetime.now():
+        return jsonify({'error': 'Invalid or expired token'}), 400
+
+    user_id = token_data[0]
+    hashed_password = generate_password_hash(new_password)
+
+    with get_db() as db:
+        db.execute('''
+            UPDATE users SET password = ? WHERE id = ?
+        ''', (hashed_password, user_id))
+        db.execute('''
+            DELETE FROM tokens WHERE token = ?
+        ''', (token,))
+
+    return jsonify({'message': 'Password reset successful'}), 200
 
 @blueprint.route('/remove_account', methods=['POST'])
 def remove_account():
     data = request.json
-    username_or_email = data.get('username_or_email')
+    email = data.get('email')
     password = data.get('password')
-    user = users.get(username_or_email)
-    if user and check_password_hash(user['password'], password):
-        # remove user logic here
-        return jsonify({"message": "Account removed successfully"}), 200
-    return jsonify({"error": "Invalid credentials"}), 400
+
+    if not email or not password:
+        return jsonify({'error': 'Invalid input'}), 400
+
+    with get_db() as db:
+        cur = db.execute('''
+            SELECT id, password FROM users WHERE email = ?
+        ''', (email,))
+        user = cur.fetchone()
+
+    if not user or not check_password_hash(user[1], password):
+        return jsonify({'error': 'Invalid credentials'}), 400
+
+    user_id = user[0]
+
+    with get_db() as db:
+        db.execute('''
+            DELETE FROM users WHERE id = ?
+        ''', (user_id,))
+        db.execute('''
+            DELETE FROM tokens WHERE user_id = ?
+        ''', (user_id,))
+
+    return jsonify({'message': 'Account removed'}), 200

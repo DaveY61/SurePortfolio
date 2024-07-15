@@ -1,6 +1,7 @@
 # Ignore application data directories
 _logs/
 _email/
+_users/
 
 # Ignore Python bytecode files
 *.pyo

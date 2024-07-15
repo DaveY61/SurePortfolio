@@ -11,7 +11,7 @@ class Config:
     LOG_FILE_DIRECTORY = os.environ.get('LOG_FILE_DIRECTORY') or 'logs'
     LOG_RETENTION_DAYS = int(os.environ.get('LOG_RETENTION_DAYS', 30))
     
-    # Email settings
+    # Email Settings
     EMAIL_QUEUE_DIRECTORY = os.environ.get('EMAIL_QUEUE_DIRECTORY') or 'email'
     EMAIL_FROM_ADDRESS = os.environ.get('EMAIL_FROM_ADDRESS')
     ENABLE_ERROR_EMAIL = os.environ.get('ENABLE_ERROR_EMAIL') == 'True'
@@ -20,5 +20,9 @@ class Config:
     SMTP_USERNAME = os.environ.get('SMTP_USERNAME')
     SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD')
     ADMIN_EMAILS = os.environ.get('ADMIN_EMAILS', '').split(',')
+
+    # User Settings
+    DATABASE_FILENAME = 'users.db'
+    DATABASE_PATH = os.path.join(os.path.dirname(__file__), '_users', DATABASE_FILENAME)
 
 config = Config()
