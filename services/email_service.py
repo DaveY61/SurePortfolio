@@ -33,7 +33,8 @@ def send_email(to, subject, body, cc=None, bcc=None, attachments=None, html=Fals
         with smtplib.SMTP(config.SMTP_SERVER, config.SMTP_PORT) as server:
             server.starttls()
             server.login(config.SMTP_USERNAME, config.SMTP_PASSWORD)
-            server.sendmail(config.EMAIL_FROM_ADDRESS, to + cc + bcc, msg.as_string())
+            recipients = to + (cc if cc else []) + (bcc if bcc else [])
+            server.sendmail(config.EMAIL_FROM_ADDRESS, recipients, msg.as_string())
     except smtplib.SMTPException as e:
         save_failed_email(msg)
         raise e
@@ -56,7 +57,8 @@ def check_and_resend_failed_emails():
             with smtplib.SMTP(config.SMTP_SERVER, config.SMTP_PORT) as server:
                 server.starttls()
                 server.login(config.SMTP_USERNAME, config.SMTP_PASSWORD)
-                server.sendmail(config.EMAIL_FROM_ADDRESS, msg['To'].split(", ") + msg.get_all('Cc', []) + msg.get_all('Bcc', []), msg.as_string())
+                recipients = msg['To'].split(", ") + msg.get_all('Cc', []) + msg.get_all('Bcc', [])
+                server.sendmail(config.EMAIL_FROM_ADDRESS, recipients, msg.as_string())
             os.remove(file_path)
         except smtplib.SMTPException:
             continue
