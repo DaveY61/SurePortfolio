@@ -23,6 +23,6 @@ class Config:
 
     # User Settings
     DATABASE_FILENAME = 'users.db'
-    DATABASE_PATH = os.path.join(os.path.dirname(__file__), '_users', DATABASE_FILENAME)
+    DATABASE_PATH = os.path.join(os.path.dirname(__file__), 'app_data/users', DATABASE_FILENAME)
 
 config = Config()

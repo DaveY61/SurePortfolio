@@ -1,9 +1,11 @@
-# Ignore application data directories
-_logs/
-_email/
-_users/
+# Ignore application data and logs
+app_logs/
+app_data/
 
 # Ignore Python bytecode files
 *.pyo
 *.pyc
 __pycache__
+
+# Ignore .env to project secrets
+.env

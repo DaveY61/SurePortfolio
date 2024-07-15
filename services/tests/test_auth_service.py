@@ -1,15 +1,24 @@
-import sys
+#----------------------------------------------------------------------------
+# Define "Project" Search Path
+#----------------------------------------------------------------------------
 import os
+import sys
+from dotenv import load_dotenv
+
+# Determine the path for this project (based on the project name)
+load_dotenv()
+project_name = os.environ.get('PROJECT_NAME')
+project_path = os.path.abspath(__file__).split(project_name)[0] + project_name
+
+# Add the project path to sys.path
+sys.path.insert(0, project_path)
+
+#----------------------------------------------------------------------------
+# Begin Test Code
+#----------------------------------------------------------------------------
 import sqlite3
-from datetime import datetime, timedelta
-
-# Add the parent directory to the sys.path
-if '__file__' in globals():
-    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-else:
-    sys.path.insert(0, os.path.abspath(os.path.join(os.getcwd(), '..')))
-
 import pytest
+from datetime import datetime
 from flask_app import create_app
 from services.auth_service import init_db
 from config import config

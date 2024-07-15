@@ -2,7 +2,6 @@ from flask import Blueprint, request, jsonify, session, redirect, url_for
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
-import os
 from datetime import datetime, timedelta
 from config import config
 from services.email_service import send_email
