@@ -16,9 +16,10 @@ sys.path.insert(0, project_path)
 #----------------------------------------------------------------------------
 # Begin Test Code
 #----------------------------------------------------------------------------
-import sqlite3
 import pytest
+import sqlite3
 from datetime import datetime
+
 from flask_app import create_app
 from services.auth_service import init_db
 from config import config
@@ -29,7 +30,6 @@ def setup_client():
     app.config['TESTING'] = True
     with app.test_client() as client:
         with app.app_context():
-            # Initialize your database or other setup tasks
             init_db()
         yield client
 
@@ -52,7 +52,6 @@ def register_user(setup_client):
     token, expires_at = cursor.fetchone()
     conn.close()
 
-    # Ensure the token is valid
     assert datetime.fromisoformat(expires_at) > datetime.now(), "Activation token has expired"
 
     return token
@@ -67,7 +66,7 @@ def test_activate(setup_client, register_user):
 
 def test_login(setup_client, register_user):
     client = setup_client
-    test_activate(client, register_user)  # Ensure the user is activated
+    test_activate(client, register_user)
     response = client.post('/login', json={
         "email": "test@example.com",
         "password": "password123"
