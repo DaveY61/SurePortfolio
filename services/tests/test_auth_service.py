@@ -24,6 +24,11 @@ from flask_app import create_app
 from services.auth_service import init_db
 from config import config
 
+# Define user credentials
+username = "testuser"
+email = "test@example.com"
+password = "password123"
+
 @pytest.fixture(scope='module', autouse=True)
 def setup_client():
     app = create_app()
@@ -37,9 +42,9 @@ def setup_client():
 def register_user(setup_client):
     client = setup_client
     response = client.post('/register', json={
-        "username": "testuser",
-        "email": "test@example.com",
-        "password": "password123"
+        "username": username,
+        "email": email,
+        "password": password
     })
     assert response.status_code == 201
     data = response.get_json()
@@ -54,7 +59,7 @@ def register_user(setup_client):
 
     assert datetime.fromisoformat(expires_at) > datetime.now(), "Activation token has expired"
 
-    return token
+    return token  # Return the activation token
 
 def test_activate(setup_client, register_user):
     client = setup_client
@@ -64,12 +69,11 @@ def test_activate(setup_client, register_user):
     data = response.get_json()
     assert 'message' in data
 
-def test_login(setup_client, register_user):
+def test_login(setup_client):
     client = setup_client
-    test_activate(client, register_user)
     response = client.post('/login', json={
-        "email": "test@example.com",
-        "password": "password123"
+        "email": email,
+        "password": password
     })
     assert response.status_code == 200
     data = response.get_json()
@@ -78,7 +82,7 @@ def test_login(setup_client, register_user):
 def test_forgot_password(setup_client):
     client = setup_client
     response = client.post('/forgot_password', json={
-        "email": "test@example.com"
+        "email": email
     })
     assert response.status_code == 200
     data = response.get_json()
@@ -87,8 +91,8 @@ def test_forgot_password(setup_client):
 def test_remove_account(setup_client):
     client = setup_client
     response = client.post('/remove_account', json={
-        "email": "test@example.com",
-        "password": "password123"
+        "email": email,
+        "password": password
     })
     assert response.status_code == 200
     data = response.get_json()
