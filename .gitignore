@@ -1,6 +1,7 @@
 # Ignore application data and logs
 app_logs/
 app_data/
+app_test_results/
 
 # Ignore Python bytecode files
 *.pyo
