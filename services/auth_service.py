@@ -26,6 +26,7 @@ sqlite3.register_converter('timestamp', convert_datetime)
 def get_db():
     conn = sqlite3.connect(DATABASE, detect_types=sqlite3.PARSE_DECLTYPES, check_same_thread=False)
     conn.row_factory = sqlite3.Row
+    conn.execute('PRAGMA journal_mode=WAL')  # Enable WAL mode for better concurrency
     return conn
 
 def init_db():

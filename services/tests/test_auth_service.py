@@ -17,12 +17,10 @@ sys.path.insert(0, project_path)
 # Begin Test Code
 #----------------------------------------------------------------------------
 import pytest
-import sqlite3
 from datetime import datetime, timedelta
 
 from flask_app import create_app
-from services.auth_service import init_db
-from config import config
+from services.auth_service import init_db, get_db
 
 # Define user credentials to test "Register"
 reg_username = "testuser"
@@ -33,11 +31,6 @@ reg_password = "password123"
 username = "testuser"
 email = "test@example.com"
 password = "password123"
-
-def get_db():
-    conn = sqlite3.connect(config.DATABASE_PATH, check_same_thread=False)  # Add check_same_thread=False to allow concurrent access in tests
-    conn.row_factory = sqlite3.Row
-    return conn
 
 @pytest.fixture(scope='module', autouse=True)
 def setup_client():
