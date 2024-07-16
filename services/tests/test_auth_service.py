@@ -17,7 +17,7 @@ sys.path.insert(0, project_path)
 # Begin Test Code
 #----------------------------------------------------------------------------
 import pytest
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from flask_app import create_app
 from services.auth_service import init_db, get_db
@@ -80,7 +80,10 @@ def test_activate(setup_client):
     token, expires_at = cursor.fetchone()
     conn.close()
 
-    assert datetime.fromisoformat(expires_at) > datetime.now(), "Activation token has expired"
+    if isinstance(expires_at, str):
+        expires_at = datetime.fromisoformat(expires_at)
+
+    assert expires_at > datetime.now(), "Activation token has expired"
 
     # Activate the user
     response = client.get(f'/activate/{token}')
