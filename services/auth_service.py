@@ -162,7 +162,7 @@ def login():
     password = data.get('password')
 
     if not email or not password:
-        return jsonify({'error': 'Invalid input'}), 400
+        return render_template('login_failure.html'), 400
 
     with get_db() as db:
         cur = db.execute('''
@@ -171,7 +171,7 @@ def login():
         user = cur.fetchone()
 
     if not user or not check_password_hash(user['password'], password) or not user['is_active']:
-        return jsonify({'error': 'Invalid credentials'}), 400
+        return render_template('login_failure.html'), 400
 
     session['user_id'] = user['id']
     session['username'] = user['username']
