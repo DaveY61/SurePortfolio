@@ -129,7 +129,7 @@ def activate_account(token):
         token_data = cur.fetchone()
 
     if not token_data:
-        return jsonify({'error': 'Invalid token'}), 400
+        return render_template('activation_failure.html'), 400
 
     expires_at = token_data['expires_at']
 
@@ -137,7 +137,7 @@ def activate_account(token):
         expires_at = convert_datetime(expires_at)  # Convert to datetime object
 
     if expires_at < datetime.now():
-        return jsonify({'error': 'Token expired'}), 400
+        return render_template('activation_failure.html'), 400
 
     user_id = token_data['user_id']
 

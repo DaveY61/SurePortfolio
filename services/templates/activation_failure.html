@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activattion Failed - SurePortfolio</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='SurePortfolioLogo.ico') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0fff0; /* Very light green background */
+        }
+        .content {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .form-container {
+            background-color: white;
+            border: 2px solid #ccc;
+            padding: 30px; /* Added more padding */
+            border-radius: 10px;
+            width: 360px; /* Increased width by another 10% */
+            margin: 0 auto;
+        }
+        .form-title {
+            margin-bottom: 15px;
+            font-size: 24px; /* Slightly larger font size */
+            font-weight: bold; /* Bold text */
+            color: red; /* Red font color */
+        }
+        .form-group label {
+            font-weight: bold;
+            text-align: left;
+            display: block;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 30px; /* Added equal space above the header */
+        }
+        .header img {
+            width: 75px; /* Increased size by 50% */
+            height: 75px; /* Increased size by 50% */
+        }
+        .header div {
+            color: green;
+            display: inline-block;
+            font-family: Fantasy, copperplate;
+            font-size: 36px; /* Increased size by 50% */
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        .response-box {
+            background-color: white;
+            border: 2px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='SurePortfolioLogo.png') }}" alt="SurePortfolio">
+        <div>SurePortfolio</div>
+    </div>
+    <div class="container content">
+        <div class="form-container response-box">
+            <div class="form-title">Activation Failed!</div>
+            <p>Activation token was invalid or had expired.</p>
+            <a href="/" class="btn btn-primary">Go to SurePortfolio Home</a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
