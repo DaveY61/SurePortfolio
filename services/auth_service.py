@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, session, redirect, url_for
+from flask import Blueprint, request, jsonify, session, redirect, url_for, render_template
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from config import config
 from services.email_service import send_email
 
-blueprint = Blueprint('auth', __name__)
+blueprint = Blueprint('auth', __name__, template_folder='templates')
 
 DATABASE = config.DATABASE_PATH
 
@@ -62,9 +62,13 @@ def generate_token(user_id, token_type):
         ''', (user_id, token, token_type, expires_at))
     return token
 
+@blueprint.route('/register', methods=['GET'])
+def show_register_form():
+    return render_template('register.html')
+
 @blueprint.route('/register', methods=['POST'])
 def register():
-    data = request.json
+    data = request.form
     username = data.get('username')
     email = data.get('email')
     password = data.get('password')

@@ -45,7 +45,7 @@ def test_register(setup_client):
     client = setup_client
 
     # First registration attempt
-    response = client.post('/register', json={
+    response = client.post('/register', data={
         "username": reg_username,
         "email": reg_email,
         "password": reg_password
@@ -53,7 +53,7 @@ def test_register(setup_client):
     assert response.status_code == 201
 
     # Second registration attempt with the same email should fail
-    response = client.post('/register', json={
+    response = client.post('/register', data={
         "username": reg_username,
         "email": reg_email,
         "password": reg_password
@@ -66,7 +66,7 @@ def test_activate(setup_client):
     client = setup_client
 
     # Register a new user
-    response = client.post('/register', json={
+    response = client.post('/register', data={
         "username": username,
         "email": email,
         "password": password
@@ -94,7 +94,7 @@ def test_activate(setup_client):
 @pytest.mark.skip(reason="Disabled until activation issue resolved")
 def test_login(setup_client):
     client = setup_client
-    response = client.post('/login', json={
+    response = client.post('/login', data={
         "email": email,
         "password": password
     })
@@ -105,7 +105,7 @@ def test_login(setup_client):
 @pytest.mark.skip(reason="Disabled until activation issue resolved")
 def test_forgot_password(setup_client):
     client = setup_client
-    response = client.post('/forgot_password', json={
+    response = client.post('/forgot_password', data={
         "email": email
     })
     assert response.status_code == 200
@@ -115,7 +115,7 @@ def test_forgot_password(setup_client):
 @pytest.mark.skip(reason="Disabled until activation issue resolved")
 def test_remove_account(setup_client):
     client = setup_client
-    response = client.post('/remove_account', json={
+    response = client.post('/remove_account', data={
         "email": email,
         "password": password
     })
