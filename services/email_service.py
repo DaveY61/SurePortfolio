@@ -11,10 +11,25 @@ smtp_server = None  # Global variable to hold the SMTP connection
 
 def connect_to_smtp():
     global smtp_server
-    if smtp_server is None:  # Check if connected or connection lost
-        smtp_server = smtplib.SMTP(config.SMTP_SERVER, config.SMTP_PORT)
-        smtp_server.starttls()
-        smtp_server.login(config.SMTP_USERNAME, config.SMTP_PASSWORD)
+    try:
+        if smtp_server is None or not test_conn_open(smtp_server):
+            smtp_server = create_conn()  # Create a new connection
+    except (smtplib.SMTPException, ConnectionRefusedError, OSError) as e:
+        # Handle connection errors (e.g., server down, authentication failure)
+        raise e
+
+def test_conn_open(conn):
+    try:
+        status = conn.noop()[0]
+    except smtplib.SMTPServerDisconnected:
+        status = -1
+    return True if status == 250 else False
+
+def create_conn():
+    new_smtp_server = smtplib.SMTP(config.SMTP_SERVER, config.SMTP_PORT)
+    new_smtp_server.starttls()
+    new_smtp_server.login(config.SMTP_USERNAME, config.SMTP_PASSWORD)
+    return new_smtp_server
 
 def send_email(to, subject, body, cc=None, bcc=None, attachments=None, html=False):
     msg = MIMEMultipart()
