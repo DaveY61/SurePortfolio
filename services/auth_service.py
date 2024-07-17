@@ -148,9 +148,13 @@ def activate_account(token):
 
     return jsonify({'message': 'Account activated'}), 200
 
+@blueprint.route('/login', methods=['GET'])
+def show_login_form():
+    return render_template('login.html')
+
 @blueprint.route('/login', methods=['POST'])
 def login():
-    data = request.json
+    data = request.form
     email = data.get('email')
     password = data.get('password')
 
