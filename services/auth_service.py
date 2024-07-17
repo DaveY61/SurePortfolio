@@ -149,7 +149,7 @@ def activate_account(token):
             DELETE FROM tokens WHERE token = ?
         ''', (token,))
 
-    return jsonify({'message': 'Account activated'}), 200
+    return render_template('activation_success.html'), 200
 
 @blueprint.route('/login', methods=['GET'])
 def show_login_form():
