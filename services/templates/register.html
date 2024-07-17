@@ -19,7 +19,7 @@
             border: 2px solid #ccc;
             padding: 30px; /* Added more padding */
             border-radius: 10px;
-            width: 330px; /* Increased width by 10% */
+            width: 360px; /* Increased width by another 10% */
             margin: 0 auto;
         }
         .form-title {
@@ -34,16 +34,17 @@
         .header {
             text-align: center;
             margin-bottom: 30px;
+            margin-top: 30px; /* Added equal space above the header */
         }
         .header img {
-            width: 50px;
-            height: 50px;
+            width: 75px; /* Increased size by 50% */
+            height: 75px; /* Increased size by 50% */
         }
         .header div {
             color: green;
             display: inline-block;
             font-family: Fantasy, copperplate;
-            font-size: 24px;
+            font-size: 36px; /* Increased size by 50% */
             margin-left: 10px;
             vertical-align: middle;
         }
@@ -56,7 +57,7 @@
     </div>
     <div class="container content">
         <div class="form-container">
-            <div class="form-title">Welcome! Enter your email, username, and password to register for SurePortfolio.</div>
+            <div class="form-title">Welcome! Enter your information to register for SurePortfolio.</div>
             <form method="post" action="{{ url_for('auth.register') }}">
                 <div class="form-group">
                     <label for="email">Email:</label>
