@@ -1,4 +1,5 @@
 import sqlite3
+import os
 from flask import Blueprint, request, jsonify, session, render_template, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
@@ -23,15 +24,17 @@ def convert_datetime(s):
 sqlite3.register_adapter(datetime, adapt_datetime)
 sqlite3.register_converter('timestamp', convert_datetime)
 
-def get_db():
-    conn = sqlite3.connect(DATABASE, detect_types=sqlite3.PARSE_DECLTYPES, check_same_thread=False)
-    conn.row_factory = sqlite3.Row
-    conn.execute('PRAGMA journal_mode=WAL')  # Enable WAL mode for better concurrency
-    return conn
-
 def init_db():
+    if os.path.exists(DATABASE):
+        print("Database already exists.")
+        return
+
+    print("Creating new database.")
+
     conn = sqlite3.connect(DATABASE, detect_types=sqlite3.PARSE_DECLTYPES, check_same_thread=False)
     cursor = conn.cursor()
+
+    # Create tables if they don't exist
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
             id TEXT PRIMARY KEY,
@@ -51,9 +54,20 @@ def init_db():
             FOREIGN KEY (user_id) REFERENCES users (id)
         )
     ''')
+
     conn.commit()
     conn.close()
     print("Database initialized")
+
+def get_db():
+    if not os.path.exists(DATABASE):
+        print("Database does not exist. Initializing...")
+        init_db()
+
+    conn = sqlite3.connect(DATABASE, detect_types=sqlite3.PARSE_DECLTYPES, check_same_thread=False)
+    conn.row_factory = sqlite3.Row
+    conn.execute('PRAGMA journal_mode=WAL')  # Enable WAL mode for better concurrency
+    return conn
 
 def generate_token(user_id, token_type):
     token = str(uuid.uuid4())
