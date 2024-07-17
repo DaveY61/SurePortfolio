@@ -1,5 +1,5 @@
-from flask import Blueprint, request, jsonify, session, redirect, url_for, render_template
 import sqlite3
+from flask import Blueprint, request, jsonify, session, render_template, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
 from datetime import datetime, timedelta
@@ -30,26 +30,29 @@ def get_db():
     return conn
 
 def init_db():
-    with get_db() as db:
-        db.execute('''
-            CREATE TABLE IF NOT EXISTS users (
-                id TEXT PRIMARY KEY,
-                username TEXT NOT NULL,
-                email TEXT NOT NULL,
-                password TEXT NOT NULL,
-                is_active INTEGER NOT NULL DEFAULT 0,
-                created_at timestamp NOT NULL
-            )
-        ''')
-        db.execute('''
-            CREATE TABLE IF NOT EXISTS tokens (
-                user_id TEXT NOT NULL,
-                token TEXT NOT NULL,
-                token_type TEXT NOT NULL,
-                expires_at timestamp NOT NULL,
-                FOREIGN KEY (user_id) REFERENCES users (id)
-            )
-        ''')
+    conn = sqlite3.connect(DATABASE, detect_types=sqlite3.PARSE_DECLTYPES, check_same_thread=False)
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            id TEXT PRIMARY KEY,
+            username TEXT NOT NULL,
+            email TEXT NOT NULL UNIQUE,
+            password TEXT NOT NULL,
+            is_active INTEGER NOT NULL DEFAULT 0,
+            created_at timestamp NOT NULL
+        )
+    ''')
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS tokens (
+            user_id TEXT NOT NULL,
+            token TEXT NOT NULL,
+            token_type TEXT NOT NULL,
+            expires_at timestamp NOT NULL,
+            FOREIGN KEY (user_id) REFERENCES users (id)
+        )
+    ''')
+    conn.commit()
+    conn.close()
     print("Database initialized")
 
 def generate_token(user_id, token_type):
