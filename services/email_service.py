@@ -7,6 +7,15 @@ from email.mime.application import MIMEApplication
 from datetime import datetime
 from config import config
 
+smtp_server = None  # Global variable to hold the SMTP connection
+
+def connect_to_smtp():
+    global smtp_server
+    if smtp_server is None or not smtp_server.noop()[0] == 250:  # Check if connected or connection lost
+        smtp_server = smtplib.SMTP(config.SMTP_SERVER, config.SMTP_PORT)
+        smtp_server.starttls()
+        smtp_server.login(config.SMTP_USERNAME, config.SMTP_PASSWORD)
+
 def send_email(to, subject, body, cc=None, bcc=None, attachments=None, html=False):
     msg = MIMEMultipart()
     msg['From'] = config.EMAIL_FROM_ADDRESS
@@ -30,11 +39,9 @@ def send_email(to, subject, body, cc=None, bcc=None, attachments=None, html=Fals
                 msg.attach(part)
 
     try:
-        with smtplib.SMTP(config.SMTP_SERVER, config.SMTP_PORT) as server:
-            server.starttls()
-            server.login(config.SMTP_USERNAME, config.SMTP_PASSWORD)
-            recipients = to + (cc if cc else []) + (bcc if bcc else [])
-            server.sendmail(config.EMAIL_FROM_ADDRESS, recipients, msg.as_string())
+        connect_to_smtp()  # Ensure SMTP connection is established
+        recipients = to + (cc if cc else []) + (bcc if bcc else [])
+        smtp_server.sendmail(config.EMAIL_FROM_ADDRESS, recipients, msg.as_string())
     except smtplib.SMTPException as e:
         save_failed_email(msg)
         raise e
@@ -54,11 +61,9 @@ def check_and_resend_failed_emails():
         with open(file_path, 'r') as f:
             msg = email.message_from_file(f)
         try:
-            with smtplib.SMTP(config.SMTP_SERVER, config.SMTP_PORT) as server:
-                server.starttls()
-                server.login(config.SMTP_USERNAME, config.SMTP_PASSWORD)
-                recipients = msg['To'].split(", ") + msg.get_all('Cc', []) + msg.get_all('Bcc', [])
-                server.sendmail(config.EMAIL_FROM_ADDRESS, recipients, msg.as_string())
+            connect_to_smtp()  # Ensure SMTP connection is established
+            recipients = msg['To'].split(", ") + msg.get_all('Cc', []) + msg.get_all('Bcc', [])
+            smtp_server.sendmail(config.EMAIL_FROM_ADDRESS, recipients, msg.as_string())
             os.remove(file_path)
         except smtplib.SMTPException:
             continue
