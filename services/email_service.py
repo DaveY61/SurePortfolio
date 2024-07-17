@@ -11,7 +11,7 @@ smtp_server = None  # Global variable to hold the SMTP connection
 
 def connect_to_smtp():
     global smtp_server
-    if smtp_server is None or not smtp_server.noop()[0] == 250:  # Check if connected or connection lost
+    if smtp_server is None:  # Check if connected or connection lost
         smtp_server = smtplib.SMTP(config.SMTP_SERVER, config.SMTP_PORT)
         smtp_server.starttls()
         smtp_server.login(config.SMTP_USERNAME, config.SMTP_PASSWORD)
