@@ -74,7 +74,7 @@ def register():
     password = data.get('password')
 
     if not username or not email or not password:
-        return jsonify({'error': 'Invalid input'}), 400
+        return render_template('register_failure.html'), 400
 
     with get_db() as db:
         # Check if the email already exists
@@ -82,7 +82,7 @@ def register():
         existing_user = cur.fetchone()
 
         if existing_user:
-            return jsonify({'error': 'Email address already registered. Please login or reset password.'}), 400
+            return render_template('register_failure.html'), 400
 
         hashed_password = generate_password_hash(password)
         user_id = str(uuid.uuid4())
@@ -97,7 +97,7 @@ def register():
     activation_link = url_for('auth.activate_account', token=token, _external=True)
     send_email([email], "Activate your account", f"Click here to activate: {activation_link}")
 
-    return jsonify({'message': 'Check your email to activate your account'}), 201
+    return render_template('register_success.html'), 201
 
 @blueprint.route('/activate/<token>', methods=['GET'])
 def activate_account(token):
