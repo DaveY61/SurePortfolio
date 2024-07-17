@@ -7,17 +7,11 @@ from dotenv import load_dotenv
 def create_app():
     # Load environment variables from .env file
     load_dotenv()
-
-    # Create a Path object
-    template_path = Path('templates')
-
-    # Get the absolute path
-    abs_template_path = template_path.resolve()
     
     # Create the Flask app with the specified template folder
-    app = Flask(__name__, template_folder=abs_template_path)
+    app = Flask(__name__)
     app.config['EXPLAIN_TEMPLATE_LOADING'] = True
-    
+
     # Dynamically discover and register blueprints
     register_blueprints(app, 'services')
 
