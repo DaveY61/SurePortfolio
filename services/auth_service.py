@@ -112,7 +112,10 @@ def register():
 
     token = generate_token(user_id, 'activation')
     activation_link = url_for('auth.activate_account', token=token, _external=True)
-    send_email([email], "Activate your account", f"Click here to activate: {activation_link}")
+    
+    # Render the email template with the provided username and activation link
+    email_body = render_template('activation_email.html', username=username, activation_link=activation_link)
+    send_email([email], "Activate your SurePortfolio Account", email_body, html=True)
 
     return render_template('register_success.html'), 201
 
