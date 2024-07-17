@@ -10,10 +10,6 @@
         body {
             background-color: #f0fff0; /* Very light green background */
         }
-        .navbar-brand img {
-            width: 30px;
-            height: 30px;
-        }
         .content {
             text-align: center;
             margin-top: 50px;
@@ -21,9 +17,9 @@
         .form-container {
             background-color: white;
             border: 2px solid #ccc;
-            padding: 20px;
+            padding: 30px; /* Added more padding */
             border-radius: 10px;
-            width: 300px;
+            width: 330px; /* Increased width by 10% */
             margin: 0 auto;
         }
         .form-title {
@@ -35,27 +31,29 @@
             text-align: left;
             display: block;
         }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header img {
+            width: 50px;
+            height: 50px;
+        }
+        .header div {
+            color: green;
+            display: inline-block;
+            font-family: Fantasy, copperplate;
+            font-size: 24px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('home') }}">
-            <img src="{{ url_for('static', filename='SurePortfolioLogo.png') }}" alt="SurePortfolio">
-            <div style="color:green; display:inline-block; font-family: Fantasy, copperplate;">
-                SurePortfolio
-            </div>
-        </a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <div class="header">
+        <img src="{{ url_for('static', filename='SurePortfolioLogo.png') }}" alt="SurePortfolio">
+        <div>SurePortfolio</div>
+    </div>
     <div class="container content">
         <div class="form-container">
             <div class="form-title">Welcome! Enter your email, username, and password to register for SurePortfolio.</div>
