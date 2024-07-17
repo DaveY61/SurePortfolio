@@ -42,7 +42,7 @@ def send_email(to, subject, body, cc=None, bcc=None, attachments=None, html=Fals
         connect_to_smtp()  # Ensure SMTP connection is established
         recipients = to + (cc if cc else []) + (bcc if bcc else [])
         smtp_server.sendmail(config.EMAIL_FROM_ADDRESS, recipients, msg.as_string())
-    except smtplib.SMTPException as e:
+    except (smtplib.SMTPException, ConnectionRefusedError, OSError) as e:
         save_failed_email(msg)
         raise e
 
@@ -65,5 +65,5 @@ def check_and_resend_failed_emails():
             recipients = msg['To'].split(", ") + msg.get_all('Cc', []) + msg.get_all('Bcc', [])
             smtp_server.sendmail(config.EMAIL_FROM_ADDRESS, recipients, msg.as_string())
             os.remove(file_path)
-        except smtplib.SMTPException:
+        except (smtplib.SMTPException, ConnectionRefusedError, OSError):
             continue
