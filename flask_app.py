@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 from flask import Flask, render_template
 import pkgutil
 import importlib
@@ -8,11 +8,14 @@ def create_app():
     # Load environment variables from .env file
     load_dotenv()
 
-    # Get the absolute path to the 'templates' folder
-    template_dir = os.path.abspath('templates')
+    # Create a Path object
+    template_path = Path('templates')
+
+    # Get the absolute path
+    abs_template_path = template_path.resolve()
     
     # Create the Flask app with the specified template folder
-    app = Flask(__name__, template_folder=template_dir)
+    app = Flask(__name__, template_folder=abs_template_path)
     
     # Dynamically discover and register blueprints
     register_blueprints(app, 'services')
