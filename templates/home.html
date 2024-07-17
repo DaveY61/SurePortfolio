@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SurePortfolio</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='SurePortfolioLogo.ico') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .navbar-brand img {
+            width: 30px;
+            height: 30px;
+        }
+        .content {
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="../static/SurePortfolioLogo.png" alt="SurePortfolio">
+            SurePortfolio
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container content">
+        <h1>Welcome to SurePortfolio</h1>
+        <p style="font-size:larger">SurePortfolio is committed to help you manage your dividend portfoilio to collect <u>safe divident income <b>and</b> price appreciation</u>.</p>  
+        <p style="font-size:larger">This two fold commitment helps you find <b>safe</b> and <b>undervalued</b> postions.  Recommendations are also provided to sell postions when they reach "full value" and replace them different with safe and undervalued choices.</p>
+        <img src="../static/SurePortfolioLogo.png" alt="SurePortfolio Image" class="img-fluid">
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

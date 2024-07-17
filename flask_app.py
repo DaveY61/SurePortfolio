@@ -1,4 +1,5 @@
-from flask import Flask
+import os
+from flask import Flask, render_template
 import pkgutil
 import importlib
 from dotenv import load_dotenv
@@ -6,9 +7,12 @@ from dotenv import load_dotenv
 def create_app():
     # Load environment variables from .env file
     load_dotenv()
+
+    # Get the absolute path to the 'templates' folder
+    template_dir = os.path.abspath('templates')
     
-    # Define the Flask app
-    app = Flask(__name__)
+    # Create the Flask app with the specified template folder
+    app = Flask(__name__, template_folder=template_dir)
     
     # Dynamically discover and register blueprints
     register_blueprints(app, 'services')
@@ -27,10 +31,10 @@ def register_blueprints(app, package_name):
 # Create the app to serve the site
 app = create_app()
 
-# Add the default page
+# Add the home page
 @app.route('/')
-def hello_world():
-    return 'This is SurePortfolio!'
+def home():
+    return render_template('home.html')
 
 # if "__main__" then run as Debug Mode on local PC
 if __name__ == '__main__':
