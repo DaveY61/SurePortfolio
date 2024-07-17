@@ -10,7 +10,7 @@ def create_app():
     
     # Create the Flask app with the specified template folder
     app = Flask(__name__)
-    app.config['EXPLAIN_TEMPLATE_LOADING'] = True
+    #app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 
     # Dynamically discover and register blueprints
     register_blueprints(app, 'services')
