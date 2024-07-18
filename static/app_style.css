@@ -7,6 +7,15 @@ body {
     height: 30px;
 }
 
+.dropdown-menu {
+    right: 0;
+    left: auto;
+}
+
+.nav-link.dropdown-toggle {
+    cursor: pointer;
+}
+
 .content {
     text-align: center;
     margin-top: 50px;
