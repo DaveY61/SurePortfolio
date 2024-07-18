@@ -3,6 +3,7 @@ from flask import Flask, render_template
 import pkgutil
 import importlib
 from dotenv import load_dotenv
+from config import config
 
 def create_app():
     # Load environment variables from .env file
@@ -10,6 +11,7 @@ def create_app():
     
     # Create the Flask app with the specified template folder
     app = Flask(__name__)
+    app.config.from_object(config)
     #app.config['EXPLAIN_TEMPLATE_LOADING'] = True
 
     # Dynamically discover and register blueprints

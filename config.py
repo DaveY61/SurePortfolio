@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Config:
+    # SECRET_KEY is used by Flask to sign session cookies and other security-related tokens.
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'super_secret_key'
 
     # Log File Settings
