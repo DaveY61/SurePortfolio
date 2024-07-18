@@ -193,7 +193,7 @@ def forgot_password():
     email = data.get('email')
 
     if not email:
-        return jsonify({'error': 'Invalid input'}), 400
+        return render_template('invalid_input.html'), 400
 
     with get_db() as db:
         cur = db.execute('''
@@ -221,8 +221,8 @@ def reset_password(token):
     new_password = data.get('password')
 
     if not new_password:
-        return jsonify({'error': 'Invalid input'}), 400
-
+        return render_template('invalid_input.html'), 400
+    
     with get_db() as db:
         cur = db.execute('''
             SELECT user_id, expires_at FROM tokens
@@ -253,7 +253,7 @@ def remove_account():
     password = data.get('password')
 
     if not email or not password:
-        return jsonify({'error': 'Invalid input'}), 400
+        return render_template('invalid_input.html'), 400
 
     with get_db() as db:
         cur = db.execute('''

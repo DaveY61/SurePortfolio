@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invalid Input - {{ config.APP_NAME }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='app_logo.ico') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='app_style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='app_logo.png') }}" alt="{{ config.APP_NAME }}">
+        <div>{{ config.APP_NAME }}</div>
+    </div>
+    <div class="container content">
+        <div class="form-container response-box">
+            <div class="form-title-failure">Invalid or Missing Input!</div>
+            <p>Input data was missing or invalid.<br>Please correct and try again.</p>
+            <a href="/" class="btn btn-primary">Go to {{ config.APP_NAME }} Home</a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
