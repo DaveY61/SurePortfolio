@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - SurePortfolio</title>
+    <title>Register - {{ config.APP_NAME }}</title>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='app_logo.ico') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -52,12 +52,12 @@
 </head>
 <body>
     <div class="header">
-        <img src="{{ url_for('static', filename='app_logo.png') }}" alt="SurePortfolio">
-        <div>SurePortfolio</div>
+        <img src="{{ url_for('static', filename='app_logo.png') }}" alt="{{ config.APP_NAME }}">
+        <div>{{ config.APP_NAME }}</div>
     </div>
     <div class="container content">
         <div class="form-container">
-            <div class="form-title">Welcome! Enter your information to register for SurePortfolio.</div>
+            <div class="form-title">Welcome! Enter your information to register for {{ config.APP_NAME }}.</div>
             <form method="post" action="{{ url_for('auth.register') }}">
                 <div class="form-group">
                     <label for="email">Email:</label>
