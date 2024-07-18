@@ -183,9 +183,13 @@ def logout():
     session.clear()
     return redirect(url_for('home'))
 
+@blueprint.route('/forgot_password', methods=['GET'])
+def show_forgot_password_form():
+    return render_template('forgot_password.html')
+
 @blueprint.route('/forgot_password', methods=['POST'])
 def forgot_password():
-    data = request.json
+    data = request.form
     email = data.get('email')
 
     if not email:
@@ -200,9 +204,12 @@ def forgot_password():
     if user:
         token = generate_token(user['id'], 'reset')
         reset_link = url_for('auth.reset_password', token=token, _external=True)
-        send_email([email], "Reset your password", f"Click here to reset: {reset_link}")
 
-    return jsonify({'message': 'Check your email for a reset link'}), 200
+        # Render the email template with the provided username and reset link
+        email_body = render_template('forgot_password_email.html', username=session['username'], activation_link=reset_link)
+        send_email([email], f"Reset your {config.APP_NAME} Password", email_body, html=True)
+
+    return render_template('forgot_password_response.html'), 200
 
 @blueprint.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
