@@ -3,30 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SurePortfolio</title>
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='SurePortfolioLogo.ico') }}">
+    <title>{{ config.APP_NAME }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='app_logo.ico') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f0fff0; /* Very light green background */
-        }
-        .navbar-brand img {
-            width: 30px;
-            height: 30px;
-        }
-        .content {
-            text-align: center;
-            margin-top: 50px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app_style.css') }}">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
-            <img src="../static/SurePortfolioLogo.png" alt="SurePortfolio">
-            <div style="color:green; display:inline-block; font-family: Fantasy, copperplate; ">
-            SurePortfolio
-            </div>
+            <img src="{{ url_for('static', filename='app_logo.png') }}" alt="{{ config.APP_NAME }}">
+            <div class="app-name">{{ config.APP_NAME }}</div>
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
