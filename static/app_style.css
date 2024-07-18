@@ -1,0 +1,29 @@
+body {
+    background-color: #f0fff0; /* Very light green background */
+}
+
+.navbar-brand img {
+    width: 30px;
+    height: 30px;
+}
+
+.content {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.app-name {
+    color: green;
+    display: inline-block;
+    font-family: Fantasy, copperplate;
+}
+
+.app-welcome {
+    color: green;
+    font-family: Fantasy, copperplate;
+    font-size: xxx-large;
+}
+
+.description {
+    font-size: larger;
+}

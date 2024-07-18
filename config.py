@@ -8,6 +8,9 @@ class Config:
     # SECRET_KEY is used by Flask to sign session cookies and other security-related tokens.
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'super_secret_key'
 
+    # Application Settings
+    APP_NAME = 'SurePortfolio'
+
     # Log File Settings
     LOG_FILE_DIRECTORY = os.environ.get('LOG_FILE_DIRECTORY') or 'logs'
     LOG_RETENTION_DAYS = int(os.environ.get('LOG_RETENTION_DAYS', 30))

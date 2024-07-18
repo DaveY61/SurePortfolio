@@ -3,30 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SurePortfolio</title>
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='SurePortfolioLogo.ico') }}">
+    <title>{{ config.APP_NAME }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='app_logo.ico') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f0fff0; /* Very light green background */
-        }
-        .navbar-brand img {
-            width: 30px;
-            height: 30px;
-        }
-        .content {
-            text-align: center;
-            margin-top: 50px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app_style.css') }}">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
-            <img src="../static/SurePortfolioLogo.png" alt="SurePortfolio">
-            <div style="color:green; display:inline-block; font-family: Fantasy, copperplate; ">
-            SurePortfolio
-            </div>
+            <img src="{{ url_for('static', filename='app_logo.png') }}" alt="{{ config.APP_NAME }}">
+            <div class="app-name">{{ config.APP_NAME }}</div>
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
@@ -40,11 +26,11 @@
         </div>
     </nav>
     <div class="container content">
-        <h1 style="color:green; font-family: Fantasy, copperplate; font-size:xxx-large">Welcome to SurePortfolio</h1>
-        <p style="font-size:larger"><b>SurePortfolio</b> will help you collect <u>safe dividend income</u> <b>and</b> capture <u>capital gain profits</u>.</p>  
-        <p style="font-size:larger">By using <b>SurePortfolio</b>, your investment portfolio will hold <b>safe</b> and <b>undervalued</b> postions.  
-            Recommendations are provided to sell postions when they reach "fair value" and help is provided to find "safe and undervalued" additions.</p>
-        <img src="../static/SurePortfolioLogo.png" alt="SurePortfolio Image" class="img-fluid">
+        <h1 class="app-welcome">Welcome to {{ config.APP_NAME }}</h1>
+        <p class="description"><b>{{ config.APP_NAME }}</b> will help you collect <u>safe dividend income</u> <b>and</b> capture <u>capital gain profits</u>.</p>  
+        <p class="description">By using <b>{{ config.APP_NAME }}</b>, your investment portfolio will hold <b>safe</b> and <b>undervalued</b> positions.  
+            Recommendations are provided to sell positions when they reach "fair value" and help is provided to find "safe and undervalued" additions.</p>
+        <img src="{{ url_for('static', filename='app_logo.png') }}" alt="{{ config.APP_NAME }} Image" class="img-fluid">
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
