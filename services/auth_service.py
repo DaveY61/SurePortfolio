@@ -214,7 +214,7 @@ def forgot_password():
 @blueprint.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
     if request.method == 'GET':
-        return render_template('reset_password.html')
+        return render_template('reset_password.html', token=token)
 
     # Otherwise handle the POST
     data = request.form
@@ -230,7 +230,12 @@ def reset_password(token):
         ''', (token,))
         token_data = cur.fetchone()
 
-    if not token_data or convert_datetime(token_data['expires_at']) < datetime.now():
+    expires_at = token_data['expires_at']
+
+    if isinstance(expires_at, str):
+        expires_at = convert_datetime(expires_at)  # Convert to datetime object
+
+    if expires_at < datetime.now():
         return render_template('invalid_input.html'), 400
 
     user_id = token_data['user_id']
@@ -244,6 +249,7 @@ def reset_password(token):
             DELETE FROM tokens WHERE token = ?
         ''', (token,))
 
+    session.clear()
     return render_template('reset_password_success.html'), 200
 
 @blueprint.route('/remove_account', methods=['POST'])
