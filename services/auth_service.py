@@ -79,12 +79,12 @@ def generate_token(user_id, token_type):
         ''', (user_id, token, token_type, expires_at))
     return token
 
-@blueprint.route('/register', methods=['GET'])
-def show_register_form():
-    return render_template('register.html')
-
-@blueprint.route('/register', methods=['POST'])
+@blueprint.route('/register', methods=['GET', 'POST'])
 def register():
+    if request.method == 'GET':
+        return render_template('register.html')
+
+    # Otherwise handle the POST
     data = request.form
     username = data.get('username')
     email = data.get('email')
@@ -151,12 +151,12 @@ def activate_account(token):
 
     return render_template('activation_success.html'), 200
 
-@blueprint.route('/login', methods=['GET'])
-def show_login_form():
-    return render_template('login.html')
-
-@blueprint.route('/login', methods=['POST'])
+@blueprint.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'GET':
+        return render_template('login.html')
+    
+    # Otherwise handle the POST
     data = request.form
     email = data.get('email')
     password = data.get('password')
@@ -183,12 +183,12 @@ def logout():
     session.clear()
     return redirect(url_for('home'))
 
-@blueprint.route('/forgot_password', methods=['GET'])
-def show_forgot_password_form():
-    return render_template('forgot_password.html')
-
-@blueprint.route('/forgot_password', methods=['POST'])
+@blueprint.route('/forgot_password', methods=['GET', 'POST'])
 def forgot_password():
+    if request.method == 'GET':
+        return render_template('forgot_password.html')
+    
+    # Otherwise handle the POST
     data = request.form
     email = data.get('email')
 
@@ -216,6 +216,7 @@ def reset_password(token):
     if request.method == 'GET':
         return jsonify({'message': 'Provide a new password'})
 
+    # Otherwise handle the POST
     data = request.json
     new_password = data.get('password')
 
