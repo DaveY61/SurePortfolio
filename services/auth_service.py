@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from config import config
 from services.email_service import send_email
 
-blueprint = Blueprint('auth', __name__, template_folder='templates')
+blueprint = Blueprint('auth', __name__, template_folder='auth_templates')
 
 DATABASE = config.DATABASE_PATH
 
