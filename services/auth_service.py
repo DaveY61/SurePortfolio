@@ -214,10 +214,10 @@ def forgot_password():
 @blueprint.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
     if request.method == 'GET':
-        return jsonify({'message': 'Provide a new password'})
+        return render_template('reset_password.html')
 
     # Otherwise handle the POST
-    data = request.json
+    data = request.form
     new_password = data.get('password')
 
     if not new_password:
@@ -231,7 +231,7 @@ def reset_password(token):
         token_data = cur.fetchone()
 
     if not token_data or convert_datetime(token_data['expires_at']) < datetime.now():
-        return jsonify({'error': 'Invalid or expired token'}), 400
+        return render_template('invalid_input.html'), 400
 
     user_id = token_data['user_id']
     hashed_password = generate_password_hash(new_password)
@@ -244,7 +244,7 @@ def reset_password(token):
             DELETE FROM tokens WHERE token = ?
         ''', (token,))
 
-    return jsonify({'message': 'Password reset successful'}), 200
+    return render_template('reset_password_success.html'), 200
 
 @blueprint.route('/remove_account', methods=['POST'])
 def remove_account():
