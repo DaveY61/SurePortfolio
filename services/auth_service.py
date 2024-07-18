@@ -197,7 +197,7 @@ def forgot_password():
 
     with get_db() as db:
         cur = db.execute('''
-            SELECT id FROM users WHERE email = ?
+            SELECT id, username FROM users WHERE email = ?
         ''', (email,))
         user = cur.fetchone()
 
@@ -206,7 +206,7 @@ def forgot_password():
         reset_link = url_for('auth.reset_password', token=token, _external=True)
 
         # Render the email template with the provided username and reset link
-        email_body = render_template('forgot_password_email.html', username=session['username'], activation_link=reset_link)
+        email_body = render_template('forgot_password_email.html', username=user['username'], activation_link=reset_link)
         send_email([email], f"Reset your {config.APP_NAME} Password", email_body, html=True)
 
     return render_template('forgot_password_response.html'), 200
