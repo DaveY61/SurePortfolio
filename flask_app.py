@@ -1,5 +1,5 @@
 from pathlib import Path
-from flask import Flask, render_template
+from flask import Flask, render_template, session
 import pkgutil
 import importlib
 from dotenv import load_dotenv
@@ -34,6 +34,8 @@ app = create_app()
 # Add the home page
 @app.route('/')
 def home():
+    if 'user_id' in session:
+        return render_template('user_home.html')
     return render_template('home.html')
 
 # if "__main__" then run as Debug Mode on local PC
