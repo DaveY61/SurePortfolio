@@ -6,58 +6,7 @@
     <title>Login Failed - {{ config.APP_NAME }}</title>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='app_logo.ico') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f0fff0; /* Very light green background */
-        }
-        .content {
-            text-align: center;
-            margin-top: 50px;
-        }
-        .form-container {
-            background-color: white;
-            border: 2px solid #ccc;
-            padding: 30px; /* Added more padding */
-            border-radius: 10px;
-            width: 360px; /* Increased width by another 10% */
-            margin: 0 auto;
-        }
-        .form-title {
-            margin-bottom: 15px;
-            font-size: 24px; /* Slightly larger font size */
-            font-weight: bold; /* Bold text */
-            color: red; /* Red font color */
-        }
-        .form-group label {
-            font-weight: bold;
-            text-align: left;
-            display: block;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            margin-top: 30px; /* Added equal space above the header */
-        }
-        .header img {
-            width: 75px; /* Increased size by 50% */
-            height: 75px; /* Increased size by 50% */
-        }
-        .header div {
-            color: green;
-            display: inline-block;
-            font-family: Fantasy, copperplate;
-            font-size: 36px; /* Increased size by 50% */
-            margin-left: 10px;
-            vertical-align: middle;
-        }
-        .response-box {
-            background-color: white;
-            border: 2px solid #ccc;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app_style.css') }}">
 </head>
 <body>
     <div class="header">
@@ -66,7 +15,7 @@
     </div>
     <div class="container content">
         <div class="form-container response-box">
-            <div class="form-title">Login Failed!</div>
+            <div class="form-title-failure">Login Failed!</div>
             <p>Invalid credentials provided. Please try login again or reset your password.</p>
             <a href="{{ url_for('auth.forgot_password') }}" class="btn btn-primary">Forgot Password</a>
             <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">Login</a>
