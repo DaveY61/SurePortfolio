@@ -115,7 +115,7 @@ def register():
     
     # Render the email template with the provided username and activation link
     email_body = render_template('activation_email.html', username=username, activation_link=activation_link)
-    send_email([email], "Activate your SurePortfolio Account", email_body, html=True)
+    send_email([email], f"Activate your {config.APP_NAME} Account", email_body, html=True)
 
     return render_template('register_success.html'), 201
 
