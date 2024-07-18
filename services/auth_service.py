@@ -1,6 +1,6 @@
 import sqlite3
 import os
-from flask import Blueprint, request, jsonify, session, render_template, url_for
+from flask import Blueprint, request, jsonify, session, render_template, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
 from datetime import datetime, timedelta
@@ -176,12 +176,12 @@ def login():
     session['user_id'] = user['id']
     session['username'] = user['username']
 
-    return jsonify({'message': 'Logged in'}), 200
+    return redirect(url_for('home'))
 
-@blueprint.route('/logout', methods=['POST'])
+@blueprint.route('/logout', methods=['GET'])
 def logout():
     session.clear()
-    return jsonify({'message': 'Logged out'}), 200
+    return redirect(url_for('home'))
 
 @blueprint.route('/forgot_password', methods=['POST'])
 def forgot_password():
