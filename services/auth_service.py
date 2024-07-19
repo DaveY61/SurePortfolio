@@ -1,6 +1,6 @@
 import sqlite3
 import os
-from flask import Blueprint, request, jsonify, session, render_template, redirect, url_for
+from flask import Blueprint, request, session, render_template, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
 from datetime import datetime, timedelta
@@ -252,9 +252,13 @@ def reset_password(token):
     session.clear()
     return render_template('reset_password_success.html'), 200
 
-@blueprint.route('/remove_account', methods=['POST'])
+@blueprint.route('/remove_account', methods=['GET','POST'])
 def remove_account():
-    data = request.json
+    if request.method == 'GET':
+        return render_template('remove_account.html')
+
+    # Otherwise handle the POST
+    data = request.form
     email = data.get('email')
     password = data.get('password')
 
@@ -268,7 +272,7 @@ def remove_account():
         user = cur.fetchone()
 
     if not user or not check_password_hash(user['password'], password):
-        return jsonify({'error': 'Invalid credentials'}), 400
+        return render_template('invalid_input.html'), 400
 
     user_id = user['id']
 
@@ -280,4 +284,5 @@ def remove_account():
             DELETE FROM tokens WHERE user_id = ?
         ''', (user_id,))
 
-    return jsonify({'message': 'Account removed'}), 200
+    session.clear()
+    return render_template('remove_account_success.html'), 200

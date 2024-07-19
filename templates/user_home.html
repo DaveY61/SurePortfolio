@@ -23,6 +23,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdown">
                         <a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a>
                         <a class="dropdown-item" href="{{ url_for('auth.forgot_password') }}">Reset Password</a>
+                        <a class="dropdown-item delete-account" href="{{ url_for('auth.remove_account') }}">Remove Account</a>
                     </div>
                 </li>
             </ul>

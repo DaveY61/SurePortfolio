@@ -16,6 +16,24 @@ body {
     cursor: pointer;
 }
 
+.dropdown-item.delete-account {
+    background-color: darkred;
+    color: white;
+}
+.dropdown-item.delete-account:hover {
+    background-color: red;
+    color: white;
+}
+
+.btn-delete {
+    background-color:darkred;
+    border-color:darkred;
+}
+.btn-delete:hover {
+    background-color:red;
+    border-color:red;
+}
+
 .content {
     text-align: center;
     margin-top: 50px;
